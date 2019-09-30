@@ -1,0 +1,14 @@
+extensions:
+
+Python
+
+
+Ctrl + Shift + P = global search settings
+
+Ctrl + Shift + P = color theme
+
+Ctrl + Shift + P = File icon theme
+
+category:themes sublime predawn
+
+tag:icon-theme @sort:installs
