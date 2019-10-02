@@ -1,5 +1,6 @@
 import random
 
+
 def menu():
     # Ask player for numbers
     user_numbers = get_player_numbers()
@@ -9,7 +10,11 @@ def menu():
 
     # Print out the winnings
     matched_numbers = user_numbers.intersection(lottery_numbers)
-    print("You matched {}. You won ${}!".format(matched_numbers, 100 ** len(matched_numbers)))
+    print(
+        "You matched {}. You won ${}!".format(
+            matched_numbers, 100 ** len(matched_numbers)
+        )
+    )
 
 
 # User can pick 6 numbers
@@ -28,4 +33,8 @@ def create_lottery_numbers():
         values.add(random.randint(1, 20))
     return values
 
-menu()
+
+#menu() 
+
+name = input("Your Name?")
+print("hello", name)
