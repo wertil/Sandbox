@@ -34,7 +34,4 @@ def create_lottery_numbers():
     return values
 
 
-#menu() 
-
-name = input("Your Name?")
-print("hello", name)
+menu() 
