@@ -1,8 +1,23 @@
-student = {"name": "Jose",
-           "mark": [70,80,50],
-           "exams": {
-                   "final": 75,
-                   "midterm": 50
-           }}
+def create_student():
+	name = input("Enter your name: ")	
+	student_data = { 
+		'name': name,  
+		'marks': []
+	}	
+	return student_data
 
-print(student["exams"]["final"])
+def add_mark(student, mark):
+	student['marks'].append(mark)
+
+def calculate_average_mark(student):
+	number = len(student['marks'])
+	if number == 0:
+		return 0
+
+	total = sum(student['marks'])
+	return total / number
+
+s = create_student()
+add_mark(s, 1)
+add_mark(s, 0)
+print(calculate_average_mark(s))
