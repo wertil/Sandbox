@@ -1,3 +1,6 @@
+
+student_list = []
+
 def create_student():
 	name = input("Enter your name: ")	
 	student_data = { 
@@ -17,7 +20,14 @@ def calculate_average_mark(student):
 	total = sum(student['marks'])
 	return total / number
 
-s = create_student()
-add_mark(s, 1)
-add_mark(s, 0)
-print(calculate_average_mark(s))
+# s = create_student()
+# add_mark(s, 1)
+# add_mark(s, 0)
+# print(calculate_average_mark(s))
+
+def print_student_details(student):
+	print("{}, average mark: {}".format(student["name"],calculate_average_mark(student)))
+
+def print_student_list(students):
+	for student in students:
+		print_student_details(student)	
