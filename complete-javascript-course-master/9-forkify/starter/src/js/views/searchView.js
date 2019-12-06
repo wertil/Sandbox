@@ -1,7 +1,8 @@
 import { elements } from './base'
 
 export const getInput = () => {
-    return elements.searchInput.value;
+    // return elements.searchInput.value;
+    return "pizza";
 }
 
 export const clearInput = () => {
