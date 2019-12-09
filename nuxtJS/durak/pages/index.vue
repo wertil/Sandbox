@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Hellloooooooooooo</h1>
+    <nuxt-link to="/users">users</nuxt-link>
   </div>
 </template>
 
