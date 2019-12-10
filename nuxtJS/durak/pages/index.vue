@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <nuxt-link to="/users">users</nuxt-link>
+    <button @click="$router.push('/products')">products</button>
   </div>
 </template>
 
@@ -19,9 +20,8 @@ export default {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .title {
