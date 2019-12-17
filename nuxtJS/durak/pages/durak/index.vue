@@ -1,17 +1,43 @@
 <template>
 
 <div class="view__durak">
-             <h1 slot="header">Durak Wildcards</h1>
+           
 
-            <p>
-                <button @click="randomizeCards(wildCardsArray)"> Pick random wildcards</button>
 
-            <div class="dice-animation" :class="diceClasses">
-                <div class="dice"></div>
-                <div class="wild-card" v-for="card in randomCards">
-                    {{ card }}
-                </div>
-            </div> 
+    <div class="mdl-card mdl-shadow--2dp">
+        <button @click="randomizeCards(wildCardsArray)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"> 
+            <i class="material-icons">casino</i>
+            Wildcards</button>                  
+
+        <div class="dice-animation" :class="diceClasses">
+            <div class="dice"></div>
+            <div class="wild-card" v-for="(card, index) in randomCards">
+                <i class="material-icons mdl-list__item-icon">filter_{{index + 1}}</i> {{ card }}
+            </div>
+        </div> 
+    </div>
+
+          
+    <div class="mdl-card mdl-shadow--2dp">
+       <button @click="randomizeCardsNachzieh(wildCardsNachziehArray)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"> 
+           <i class="material-icons">casino</i>
+           Nachzieh Wildcards</button>
+
+        <div class="dice-animation x--nachzieh" :class="nachziehClasses">
+            <div class="silicon-valley"></div> 
+            <div class="wild-card" v-for="(card, index) in wildCardsNachzieh">
+                <i class="material-icons mdl-list__item-icon">filter_{{index + 1}}</i> {{ card }}
+            </div>
+        </div>  
+    </div>
+          
+           
+            
+
+
+         
+
+
 </div> 
 
 </template>
@@ -65,7 +91,7 @@
                 ],
                 wildCardsArrayNew: [],
                 randomCards: [],
-                wildCardsNachzieh: "",
+                wildCardsNachzieh: [],
                 wildCardsNachziehArray: [
                     "gibt kein Trumpf\nkein schieben",
                     "gibt kein Trumpf",
@@ -88,14 +114,14 @@
             };
         },
         computed: {
-            wildCardsNachziehCopy() {
-                this.wildCardsNachziehArray.forEach((el) => {
-                    this.wildCardsNachzieh += `${el} \n`;
-                });
-            },
             diceClasses() {
                 return [
                     { [`x--roll`]: this.randomCards.length > 0 }
+                ];
+            },
+              nachziehClasses() {
+                return [
+                    { [`x--roll`]: this.wildCardsNachzieh.length > 0 }
                 ];
             }
         },
@@ -114,6 +140,21 @@
                 }, 500)
 
 
+            },
+            randomizeCardsNachzieh(cards, amount = 1) {
+                this.wildCardsNachzieh = [];
+
+                setTimeout(() => {
+                    const localCopy2 = [...cards];
+
+                    for (let i = 0; i < amount; i++) {                     
+                        let randomIndex = Math.floor(Math.random() * localCopy2.length);
+                        this.wildCardsNachzieh.push(...localCopy2.splice(randomIndex, 1));
+                    }
+
+                }, 500)
+
+
             }
         }
     };
@@ -123,8 +164,16 @@
 
 .view__durak {
     padding: 1em;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     button {
+        margin-bottom: 1em;
+    }
+
+    .mdl-card { 
         margin-bottom: 1em;
     }
 
@@ -170,6 +219,13 @@
                     animation: wildcard 0.6s ease 4.1s forwards;
                 }
 
+                &.x--nachzieh {
+                    .silicon-valley { 
+                        opacity: 1;
+                        animation: dice 0.2s ease 3.3s forwards;
+                    } 
+                 }
+
             }
 
             .dice {
@@ -181,12 +237,27 @@
                 opacity: 0;
             }
 
+            .silicon-valley {
+                position: absolute;
+                width: 200px;
+                height: 146px;
+                background-size: 100% auto;
+                background-image: url("../../assets/silicon-valley.gif");
+                opacity: 0;
+            }
+
             .wild-card {
                 font-weight: bold;
                 font-size: 1.1em;
                 padding: 0.3em;
                 margin: 0.3em;
                 opacity: 0;
+                display: flex;
+
+                i {
+                    margin-right: 0.3em
+                } 
+
             }
 
         }

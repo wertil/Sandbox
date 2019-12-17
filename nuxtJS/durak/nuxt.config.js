@@ -13,7 +13,12 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' },
-      { rel: 'manifest',  href: '/manifest.json' } 
+      { rel: 'manifest',  href: '/manifest.json' },
+      { rel: 'stylesheet',  href: '/material/material.min.css' },
+      { rel: 'stylesheet',  href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+    ],
+    script: [
+      {  src: "/material/material.min.js",  type: "text/javascript" }
     ]
   },
   /*
@@ -41,6 +46,9 @@ export default {
   modules: [
     '@nuxtjs/pwa',
   ],
+  // router: {
+  //   base: '/durak/'
+  // },
   /*
   ** Build configuration
   */
