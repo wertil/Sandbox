@@ -11,7 +11,8 @@
       <span class="mdl-layout-title">Durak</span>
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="/">Home</a>
-        <a class="mdl-navigation__link" href="/durak">Wildcards</a>       
+        <a class="mdl-navigation__link" href="/durak">Wildcards</a>    
+         <a class="mdl-navigation__link" href="/durak/archive">Standings</a>     
       </nav>
     </div>
     <main class="mdl-layout__content mat-typography">
