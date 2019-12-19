@@ -18,7 +18,7 @@
 
     <div
       class="mdl-card mdl-shadow--2dp"
-      :style="`background-image: url('../../durak/${seasons[selectedSeason].file}.png');`"
+      :style="`background-image: url('durak/${seasons[selectedSeason].file}.png');`"
     ></div>
   </div>
 </template>

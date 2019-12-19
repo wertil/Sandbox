@@ -12,16 +12,16 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/icons/favicon.ico' },
-      { rel: 'manifest',  href: '/manifest.json' },
-      { rel: 'stylesheet',  href: '/material/material.min.css' },
+      { rel: 'icon', type: 'image/x-icon', href: '/durak/icons/favicon.ico' },
+      { rel: 'manifest',  href: '/durak/manifest.json' },
+      { rel: 'stylesheet',  href: '/durak/material/material.min.css' },
       { rel: 'stylesheet',  href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
     ],
     script: [
-      {  src: "/material/material.min.js",  type: "text/javascript" }
+      {  src: "/durak/material/material.min.js",  type: "text/javascript" }
     ]
   },
-  /*
+  /* 
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
@@ -46,9 +46,9 @@ export default {
   modules: [
     '@nuxtjs/pwa', 
   ],
-  // router: {
-  //   base: '/durak/'
-  // },
+  router: {
+    base: '/durak/'
+  },
   /*
   ** Build configuration
   */
