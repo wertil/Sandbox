@@ -1,16 +1,20 @@
 <template>
-  <div class="container">
+  <!-- <div class="container">
     <nuxt-link to="/users">users</nuxt-link>
     <button @click="$router.push('/products')">products</button>
-  </div>
+  </div> -->
+
+  <Durak />
+
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
+import Durak from '~/pages/durak/index.vue'
 
 export default {
   components: {
-    Logo
+    Logo, Durak
   }
 }
 </script>

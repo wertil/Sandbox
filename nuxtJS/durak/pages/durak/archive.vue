@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "Durak Archive",
+  name: "DurakArchive",
   data() {
     return {
       seasons: [
