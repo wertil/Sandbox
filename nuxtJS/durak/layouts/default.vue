@@ -10,7 +10,8 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Durak</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="/durak/">Home</a>
+        <a class="mdl-navigation__link" href="/durak/current/">Currrent Season</a>
+         <a class="mdl-navigation__link" href="/durak/">Home</a>
         <a class="mdl-navigation__link" href="/durak/durak">Wildcards</a>    
          <a class="mdl-navigation__link" href="/durak/durak/archive">Standings</a>     
       </nav>

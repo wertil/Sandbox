@@ -13,12 +13,12 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/durak/icons/favicon.ico' },
-      { rel: 'manifest',  href: '/durak/manifest.json' },
-      { rel: 'stylesheet',  href: '/durak/material/material.min.css' },
-      { rel: 'stylesheet',  href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+      { rel: 'manifest', href: '/durak/manifest.json' },
+      { rel: 'stylesheet', href: '/durak/material/material.min.css' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
     ],
     script: [
-      {  src: "/durak/material/material.min.js",  type: "text/javascript" }
+      { src: "/durak/material/material.min.js", type: "text/javascript" }
     ]
   },
   /* 
@@ -44,10 +44,14 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa', 
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
   router: {
     base: '/durak/'
+  },
+  axios: {
+    // proxyHeaders: false
   },
   /*
   ** Build configuration
@@ -56,7 +60,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }
