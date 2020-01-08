@@ -9,19 +9,25 @@
       <thead>
         <tr>
           <th class="name">Name</th>
-          <th class="standing">Standing</th>
+          <th class="result">Result</th>
+          <th class="standing"></th>
           <th class="mia">MIA</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in durakStanding.Athletes" :key="item.id">
-          <td :class="`name  ${hearts[item.Name]}  
+        <tr v-for="item in grouped" :key="item.id">
+          <td
+            :class="`name  ${hearts[item.Name]}  
 		  				${item.IsSeasonChampion?'x--season-durak':''}
 						${item.IsDurak?'x--durak':''}   
-						  `">
-            <span><div class="player">{{item.Name}}</div></span>
+						  `"
+          >
+            <span>
+              <div class="player">{{item.Name}}</div>
+            </span>
           </td>
-          <td class="standing">I</td>
+          <td class="result">{{item.Sum}}</td>
+          <td class="standing"><span v-for="tick in item.Ticks" :key="index">I</span></td>
           <td class="mia">{{item.Absence}}</td>
         </tr>
       </tbody>
@@ -39,7 +45,8 @@ export default {
   components: {},
   data() {
     return {
-      durakStanding: false
+      durakStanding: false,
+      grouped: false
     };
   },
   computed: {
@@ -47,28 +54,31 @@ export default {
       return this.durakStanding;
     },
     getTitle() {
-      return `${this.durakStanding.Season.Quarter} / ${this.durakStanding.Season.Year}`;
+      return `Season ${this.durakStanding.Season.Quarter} / ${this.durakStanding.Season.Year}`;
     },
 
-    groupedAthletes() {
+    groupedAthletes2() {
       const grouped = [];
       const step = 5;
 
-      this.Athletes.forEach(Athlete => {
+      this.durakStanding.Athletes.forEach(Athlete => {
         const newTicks = [];
         const TotalTicks = [];
 
         //add absence ticks
         for (
           let i = 0;
-          i < Math.floor(Athlete.Absence / this.Season.AbsenceDivider);
+          i <
+          Math.floor(
+            Athlete.Absence / this.durakStanding.Season.AbsenceDivider
+          );
           i++
         ) {
           TotalTicks.push({ Type: "Single" });
         }
 
         // add game ticks
-        const ticks = JSON.parse(JSON.stringify(Athlete.Ticks));
+        const ticks = Athlete.Ticks;
         for (let i = 0; i < ticks.length; i++) {
           TotalTicks.push(ticks[i]);
         }
@@ -100,8 +110,10 @@ export default {
           IsDurak: Athlete.IsDurak,
           SeasonChampionCount: Athlete.SeasonChampionCount
         });
+
       });
-      return grouped.sort((a, b) => {
+
+       this.grouped = grouped.sort((a, b) => {
         return b.Sum - a.Sum === 0
           ? b.TripleSum - a.TripleSum === 0
             ? b.DoubleSum - a.DoubleSum === 0
@@ -112,7 +124,11 @@ export default {
             : b.TripleSum - a.TripleSum
           : b.Sum - a.Sum;
       });
+
+      this.grouped = grouped;
+
     },
+
     hearts() {
       const hearts = {};
       this.durakStanding.Athletes.forEach(Athlete => {
@@ -124,7 +140,7 @@ export default {
     }
   },
   mounted() {
-    fetchJsonData(
+    fetchJsonData( 
       "https://cors-anywhere.herokuapp.com/http://www.samasama.de/durak/DURAK.json"
     )
       .then(res => {
@@ -155,33 +171,33 @@ export default {
       content: "";
       background: url("../../assets/heart.png") repeat-x;
       background-size: auto 100%;
-	  overflow: hidden;
-	  width: 0;
-	}
-	
-	      &.x--hearts-4 {
-        &:before {
-          width: 4.85em;
-        }
-      }
+      overflow: hidden;
+      width: 0;
+    }
 
-      &.x--hearts-3 {
-        &:before {
-          width: 3.65em;
-        }
+    &.x--hearts-4 {
+      &:before {
+        width: 4.85em;
       }
+    }
 
-      &.x--hearts-2 {
-        &:before {
-          width: 2.45em;
-        }
+    &.x--hearts-3 {
+      &:before {
+        width: 3.65em;
       }
+    }
 
-      &.x--hearts-1 {
-        &:before {
-          width: 1.25em;
-        }
+    &.x--hearts-2 {
+      &:before {
+        width: 2.45em;
       }
+    }
+
+    &.x--hearts-1 {
+      &:before {
+        width: 1.25em;
+      }
+    }
 
     &.x--season-durak {
       span:before {
@@ -192,28 +208,29 @@ export default {
         height: 2em;
         content: "";
         background: url("../../static/icon.png") no-repeat;
-		background-size: contain;
+        background-size: contain;
       }
-
-
     }
 
     span {
       position: relative;
       display: inline-block;
       transform: translateY(0.3em);
-	  font-weight: bold;
-	}
-	
-	.player {
-		font-size: 1.3em;
-	}
+      font-weight: bold;
+    }
 
+    .player {
+      font-size: 1.3em;
+    }
+  }
 
+  .result {
+    text-align: center;
   }
 
   .standing {
     text-align: left;
+    min-width: 20vw;
   }
 
   .mia {
