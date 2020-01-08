@@ -17,7 +17,7 @@
         <tr v-for="item in durakStanding.Athletes" :key="item.id">
           <td :class="`name  ${hearts[item.Name]}  
 		  				${item.IsSeasonChampion?'x--season-durak':''}
-						${item.IsDurak?'x--durak':''}  
+						${item.IsDurak?'x--durak':''}   
 						  `">
             <span><div class="player">{{item.Name}}</div></span>
           </td>
@@ -157,21 +157,9 @@ export default {
       background-size: auto 100%;
 	  overflow: hidden;
 	  width: 0;
-    }
-
-    &.x--season-durak {
-      span:before {
-        position: absolute;
-        left: -2.1em;
-        top: -0.6em;
-        width: 2em;
-        height: 2em;
-        content: "";
-        background: url("../../static/icon.png") no-repeat;
-		background-size: contain;
-      }
-
-      &.x--hearts-4 {
+	}
+	
+	      &.x--hearts-4 {
         &:before {
           width: 4.85em;
         }
@@ -194,6 +182,20 @@ export default {
           width: 1.25em;
         }
       }
+
+    &.x--season-durak {
+      span:before {
+        position: absolute;
+        left: -2.1em;
+        top: -0.6em;
+        width: 2em;
+        height: 2em;
+        content: "";
+        background: url("../../static/icon.png") no-repeat;
+		background-size: contain;
+      }
+
+
     }
 
     span {
