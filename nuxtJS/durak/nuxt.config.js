@@ -34,6 +34,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/filterInjections.js'  
   ],
   /*
   ** Nuxt.js dev-modules

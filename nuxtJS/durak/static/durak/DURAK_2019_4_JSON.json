@@ -1,0 +1,284 @@
+{
+    "Durak": {
+        "Season": {
+            "Year": 2019,
+            "Quarter": 4,
+            "AbsenceDivider": 4
+        },
+        "Athletes": [
+            {
+                "Name": "Tilo",
+                "Absence": 10,
+                "IsSeasonChampion": false,
+                "SeasonChampionCount": 2,
+                "IsDurak": false,
+                "Ticks": [
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Double"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    }
+                ]
+            },
+            {
+                "Name": "Felix",
+                "Absence": 6,
+                "IsDurak": false,
+                "Ticks": [
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    }
+                ]
+            },
+            {
+                "Name": "Sven",
+                "Absence": 4,
+                "IsDurak": true,
+                "SeasonChampionCount": 1,
+                "Ticks": [
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Double"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    }
+                ]
+            },
+            {
+                "Name": "Basti",
+                "Absence": 4,
+                "IsDurak": false,
+                "Ticks": [
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Double"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Double"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    }
+                ]
+            },
+            {
+                "Name": "Jojo",
+                "Absence": 24,
+                "IsDurak": false,
+                "Ticks": [
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    }
+                ]
+            },
+            {
+                "Name": "Johannes",
+                "Absence": 17,
+                "IsDurak": false,
+                "IsSeasonChampion": true,
+                "SeasonChampionCount": 3,
+                "Ticks": [
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    }
+                ]
+            },
+            {
+                "Name": "Alex",
+                "Absence": 48,
+                "IsDurak": false,
+                "Ticks": [
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single"
+                    },
+                    {
+                        "Type": "Single",
+                        "wildcard": true
+                    },
+                    {
+                        "Type": "Single",
+                        "wildcard": true
+                    },
+                    {
+                        "Type": "Single",
+                        "wildcard": true
+                    }
+                ]
+            }
+        ]
+    }
+}
