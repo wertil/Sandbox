@@ -21,23 +21,23 @@
             :class="`name  ${hearts[item.Name]}  
 		  				${item.IsSeasonChampion?'x--season-durak':''}
 						${item.IsDurak?'x--durak':''}   
-						  `" 
+						  `"
           >
             <span>
               <div class="player">{{item.Name}}</div>
             </span>
 
             <div class="season-champion" v-if="item.SeasonChampionCount">
-              <span v-for="n in item.SeasonChampionCount"></span> 
+              <span v-for="n in item.SeasonChampionCount"></span>
             </div>
           </td>
           <td class="standing">
             <div v-for="group in item.Ticks" class="tick-group">
-              <span v-for="tick in group" :class="`tick ${tick.Type}` | lowercase">I</span> 
+              <span v-for="tick in group" :class="`tick ${tick.Type}` | lowercase">I</span>
             </div>
           </td>
           <td class="result">{{item.Sum}}</td>
-          <td class="mia">{{item.Absence}}</td> 
+          <td class="mia">{{item.Absence}}</td>
         </tr>
       </tbody>
     </table>
@@ -320,6 +320,24 @@ export default {
           TotalTicks.push(ticks[i]);
         }
 
+        // negative ticks (having more than 15 cards and not losing)
+        // count negative ticks
+
+        // const negativeTicks = TotalTicks.filter((item)=>{
+        //     return item.Type === "Negative";
+        // });
+        // let negativeCount = negativeTicks.length;
+
+        // // remove single ticks based on negative count
+        // let removeCount = 0;
+
+        // while(removeCount < negativeCount){
+        //    const indexOfSingle = TotalTicks.findIndex((item)=>{
+        //         return item.Type === "Single";
+        //     });
+        //    TotalTicks.splice(indexOfSingle,1);
+        // }
+
         for (let i = 0; i < TotalTicks.length; i += step) {
           const group = [];
           for (let j = i; j < i + step && j < TotalTicks.length; j++) {
@@ -488,15 +506,15 @@ export default {
     .tick {
       font-weight: bold;
       font-size: 1.9em;
-	  color: grey;
+      color: grey;
 
-	  &.double {
-		  color: #ffc107;
-	  }
+      &.double {
+        color: #ffc107;
+      }
 
-	  &.triple {
-		  color: #E91E63;
-	  }
+      &.triple {
+        color: #e91e63;
+      }
 
       &:nth-child(5) {
         position: absolute;
@@ -511,10 +529,10 @@ export default {
   }
 
   tbody {
-	  .result {
-		  font-weight: bold;
-		  font-size: 1.5em;
-	  }
+    .result {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
   }
 }
 </style>

@@ -1,64 +1,100 @@
 {
-    "Durak": {
-        "Season": {
-            "Year": 2020,
-            "Quarter": 1,
-            "AbsenceDivider": 4
-        },
-        "Athletes": [
-            {
-                "Name": "Tilo",
-                "Absence": 0,
-                "IsSeasonChampion": false,
-                "SeasonChampionCount": 2,
-                "IsDurak": false,
-                "Ticks": []
-            },
-            {
-                "Name": "Felix",
-                "Absence": 0,
-                "IsDurak": false,
-                "Ticks": [
-                    {
-                        "Type": "Single"
-                    }
-                ]
-            },
-            {
-                "Name": "Sven",
-                "Absence": 3,
-                "IsDurak": false,
-                "SeasonChampionCount": 1,
-                "Ticks": []
-            },
-            {
-                "Name": "Basti",
-                "Absence": 3,
-                "IsDurak": false,
-                "Ticks": []
-            },
-            {
-                "Name": "Jojo",
-                "Absence": 0,
-                "IsDurak": false,
-                "Ticks": []
-            },
-            {
-                "Name": "Johannes",
-                "Absence": 0,
-                "IsDurak": true,
-                "IsSeasonChampion": false,
-                "SeasonChampionCount": 3,
-                "Ticks": []
-            },
-            {
-                "Name": "Alex",
-                "Absence": 3,
-                "IsDurak": false,
-                "IsSeasonChampion": true,
-                "SeasonChampionCount": 1,
-                "Ticks": []
-            }
-        ]
-    }
+	"Durak": {
+		"Season": {
+			"Year": 2020,
+			"Quarter": 1,
+			"AbsenceDivider": 4
+		},
+		"Athletes": [
+			{
+				"Name": "Tilo",
+				"Absence": 0,
+				"IsSeasonChampion": false,
+				"SeasonChampionCount": 2,
+				"IsDurak": false,
+				"Ticks": [
+					{
+						"Type": "Single"
+					},
+					{
+						"Type": "Negative"
+					}
+				]
+			},
+			{
+				"Name": "Felix",
+				"Absence": 0,
+				"IsDurak": false,
+				"Ticks": [
+					{
+						"Type": "Single"
+					},
+					{
+						"Type": "Single",
+						"Property": "Wildcard"
+					}
+				]
+			},
+			{
+				"Name": "Sven",
+				"Absence": 3,
+				"IsDurak": false,
+				"SeasonChampionCount": 1,
+				"Ticks": [
+					{
+						"Type": "Single",
+						"Property": "Wildcard"
+					}
+				]
+			},
+			{
+				"Name": "Basti",
+				"Absence": 3,
+				"IsDurak": false,
+				"Ticks": [
+					{
+						"Type": "Single",
+						"Property": "Wildcard"
+					}
+				]
+			},
+			{
+				"Name": "Jojo",
+				"Absence": 0,
+				"IsDurak": true,
+				"Ticks": [
+					{
+						"Type": "Single"
+					}
+				]
+			},
+			{
+				"Name": "Johannes",
+				"Absence": 0,
+				"IsDurak": false,
+				"IsSeasonChampion": false,
+				"SeasonChampionCount": 3,
+				"Ticks": [
+					{
+						"Type": "Single"
+					},
+					{
+						"Type": "Negative"
+					}
+				]
+			},
+			{
+				"Name": "Alex",
+				"Absence": 3,
+				"IsDurak": false,
+				"IsSeasonChampion": true,
+				"SeasonChampionCount": 1,
+				"Ticks": [
+					{
+						"Type": "Negative"
+					}
+				]
+			}
+		]
+	}
 }
