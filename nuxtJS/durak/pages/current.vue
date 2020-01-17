@@ -1,5 +1,21 @@
 <template>
   <div class="container">
+    <div class="buttons" v-if="hasStanding">
+      <button
+        class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
+        @click="previousSeason"
+      >
+        <i class="material-icons">arrow_back</i>
+      </button>
+
+      <button
+        class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
+        @click="nextSeason"
+      >
+        <i class="material-icons">arrow_forwardk</i>
+      </button>
+    </div>
+
     <h4 v-if="hasStanding">{{ getTitle }}</h4>
 
     <table
@@ -51,11 +67,22 @@ import { fetchJsonData } from "../utils/request";
 import axios from "axios";
 
 export default {
+  name: "DurakCurrent",
   components: {},
   data() {
     return {
       durakStanding: false,
       grouped: false,
+      seasons: [
+        { Season: "4/2018", Json: "DURAK_2018_4_JSON.json" },
+        { Season: "1/2019", Json: "DURAK_2019_1_JSON.json" },
+        { Season: "2/2019", Json: "DURAK_2019_2_JSON.json" },
+        { Season: "3/2019", Json: "DURAK_2019_3_JSON.json" },
+        { Season: "4/2019", Json: "DURAK_2019_4_JSON.json" },
+        { Season: "1/2020", Json: "DURAK_JSON.json" }
+      ],
+      currentSeason: undefined,
+      selectedSeason: undefined,
       local: [
         {
           Name: "Alex",
@@ -276,15 +303,28 @@ export default {
   },
   mounted() {
     fetchJsonData(
-      "https://cors-anywhere.herokuapp.com/http://www.samasama.de/durak/durak/DURAK_2019_4_JSON.json"
+      "/durak/durak/DURAK_JSON.json"
       //   "https://cors-anywhere.herokuapp.com/http://www.samasama.de/durak/durak/DURAK_JSON.json"
     )
       .then(res => {
         this.durakStanding = res.Durak;
+        this.currentSeason = this.seasons.length - 1;
+        this.selectedSeason = this.seasons.length - 1;
       })
       .catch(() => {
         this.durakStanding = null;
-      });
+      }); 
+  },
+  watch: {
+    selectedSeason(value) {
+      fetchJsonData(`/durak/durak/${this.seasons[value].Json}`)
+        .then(res => {
+          this.durakStanding = res.Durak;
+        })
+        .catch(() => { 
+          this.durakStanding = null; 
+        });
+    }
   },
   computed: {
     hasStanding() {
@@ -300,7 +340,7 @@ export default {
 
       this.durakStanding.Athletes.forEach(Athlete => {
         const newTicks = [];
-        const TotalTicks = [];
+        let TotalTicks = [];
 
         //add absence ticks
         for (
@@ -323,20 +363,23 @@ export default {
         // negative ticks (having more than 15 cards and not losing)
         // count negative ticks
 
-        // const negativeTicks = TotalTicks.filter((item)=>{
-        //     return item.Type === "Negative";
-        // });
-        // let negativeCount = negativeTicks.length;
+        const negativeTicks = TotalTicks.filter(item => {
+          return item.Type === "Negative";
+        });
+        let negativeCount = negativeTicks.length;
 
-        // // remove single ticks based on negative count
-        // let removeCount = 0;
+        // remove single ticks based on negative count
+        let removeCount = 0;
 
-        // while(removeCount < negativeCount){
-        //    const indexOfSingle = TotalTicks.findIndex((item)=>{
-        //         return item.Type === "Single";
-        //     });
-        //    TotalTicks.splice(indexOfSingle,1);
-        // }
+        const ticksAfterNegative = TotalTicks.filter(item => {
+          if (item.Type === "Single" && removeCount < negativeCount) {
+            removeCount++;
+            return false;
+          }
+          return item.Type === "Single";
+        });
+
+        TotalTicks = ticksAfterNegative;
 
         for (let i = 0; i < TotalTicks.length; i += step) {
           const group = [];
@@ -390,6 +433,23 @@ export default {
           (Athlete.Absence % this.durakStanding.Season.AbsenceDivider)}`;
       });
       return hearts;
+    }
+  },
+  methods: {
+    previousSeason() {
+      if (this.selectedSeason > 0) {
+        this.selectedSeason--;
+      } else {
+        this.selectedSeason = this.seasons.length - 1;
+      }
+    },
+
+    nextSeason() {
+      if (this.selectedSeason + 1 < this.seasons.length) {
+        this.selectedSeason++;
+      } else {
+        this.selectedSeason = 0;
+      }
     }
   }
 };
