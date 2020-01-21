@@ -313,7 +313,7 @@ export default {
       })
       .catch(() => {
         this.durakStanding = null;
-      }); 
+      });
   },
   watch: {
     selectedSeason(value) {
@@ -321,8 +321,8 @@ export default {
         .then(res => {
           this.durakStanding = res.Durak;
         })
-        .catch(() => { 
-          this.durakStanding = null; 
+        .catch(() => {
+          this.durakStanding = null;
         });
     }
   },
