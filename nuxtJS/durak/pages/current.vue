@@ -28,9 +28,9 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr v-for="athlete in grouped" :key="athlete.id">			 -->
+                <!-- <tr v-for="athlete in groupedAthletes" :key="athlete.id">			 -->
                 <tr v-for="athlete in groupedAthletes"
-                    :key="athlete.id">
+                    :key="athlete.id"  :class="`${athlete.IsDurak?'x--durak':''}`">
                     <td :class="getAthleteClass(athlete)">
                         <span>
                             <div class="player">{{athlete.Name}}</div>
@@ -132,7 +132,7 @@
                             removeCount++;
                             return false;
                         }
-                        return item.Type === "Single";
+                          return item.Type !== "Negative";
                     });
 
                     TotalTicks = ticksAfterNegative;
@@ -250,15 +250,19 @@
 </script>
 
 <style lang="scss">
-    .durak-table {
+    .durak-table { 
         width: 100%;
+
+		.x--durak {
+			background: #ffe7e7;
+		}
 
         td {
             padding: 0.5em;
         }
 
         .name {
-            position: relative;
+            position: relative; 
             text-align: left;
             text-indent: 0.3em;
 
