@@ -48,32 +48,22 @@ class Search {
 
     getResults() {
         this.searchResults.innerHTML = "search results here";
-    //    this.hasSpinner = false;        
-        
+        //    this.hasSpinner = false;       
 
-        let request = new XMLHttpRequest();
-        let term = this.searchField.value;
-        let url = `http://localhost:3000/assets/DURAK.json`
-        console.log(url);
-        request.open('GET', url, true);
+        const searchField = this.searchField.value;
+        const url = `http://localhost:3000/assets/${searchField}`
+        fetch(url)
+            .then((response) => {
+                return response.json();
+            })
+            .then((myJson) => {
+                let hallo = "";
+                myJson.Durak.Athletes.forEach(athlete => {
+                    hallo +=  `<li>${athlete.Name}</li>`;
+                })
+                this.searchResults.innerHTML = hallo;
+            }); 
 
-        request.onload = function () {
-            if (this.status >= 200 && this.status < 400) {
-                // Success!  
-                let data = JSON.parse(this.response);           
-                console.log(data.Durak.Athletes); 
-                this.searchResults.innerHTML = data.Durak.Athletes;
-            } else {
-                // We reached our target server, but it returned an error
-
-            }
-        }
-
-        request.onerror = function () {
-            // There was a connection error of some sort
-        };
-
-        request.send();
     }
 
     keyPressDispatcher(event) {
