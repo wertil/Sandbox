@@ -39,7 +39,7 @@
 			{
 				"Name": "Felix",
 				"Absence": 11, 
-				"IsDurak": false,
+				"IsDurak": true,
 				"Ticks": [
 					{
 						"Type": "Single"
@@ -47,6 +47,9 @@
 					{
 						"Type": "Single",
 						"Property": "Wildcard"
+					},
+					{
+						"Type": "Single"
 					},
 					{
 						"Type": "Single"
@@ -93,7 +96,7 @@
 			},
 			{
 				"Name": "Jojo",
-				"Absence": 4,
+				"Absence": 5,
 				"IsDurak": false,
 				"Ticks": [
 					{
@@ -104,7 +107,7 @@
 			{
 				"Name": "Johannes",
 				"Absence": 0,
-				"IsDurak": true,
+				"IsDurak": false,
 				"IsSeasonChampion": false,
 				"SeasonChampionCount": 3,
 				"Ticks": [
@@ -127,7 +130,7 @@
 			},
 			{
 				"Name": "Alex",
-				"Absence": 14,
+				"Absence": 15,
 				"IsDurak": false, 
 				"IsSeasonChampion": true,
 				"SeasonChampionCount": 1,

@@ -3,34 +3,22 @@
 // leafletMap();   
 
 
-import Search from './modules/search.js';
-const search = new Search();
+// import Search from './modules/search.js';
+// const search = new Search();
 
-const products = [
-    { name: 'Iphone', price: 200 },
-    { name: 'Motorola', price: 70 },
-    { name: 'Samsung', price: 150 },
-    { name: 'Sony', price: 98 },
-    { name: 'Windows pone', price: 10 }
-];
+const cars = [
+    {name:'Ford',price:200},
+    {name:'Nissan',price:400},
+    {name:'Nissan',price:600}
+ ]
 
-let template = "";
+ function convertPrice(price) {
+     return price * 200;
+ }
 
-function isOnSale(price) {
-    if (price < 100) {
-        return "<span>On sale !!</span>"
-    }
-}
+ const newArray = cars.map( (car) => {
+      return `The ${car.name} is ${convertPrice(car.price)} Rupies. `
+ })
 
-products.forEach(product => {
-    template += `
-    <div class="product"> 
-        <h1>${product.name}</h1>
-        <strong>Prices: $ ${product.price} </strong>
-        ${isOnSale(product.price)}
-    </div>
-    `
-})
-
-
-document.body.insertAdjacentHTML('beforeend', template);
+console.log(newArray);
+document.body.insertAdjacentHTML('beforeend', newArray);
