@@ -38,8 +38,8 @@
 			},
 			{
 				"Name": "Felix",
-				"Absence": 11, 
-				"IsDurak": true,
+				"Absence": 12, 
+				"IsDurak": false,
 				"Ticks": [
 					{
 						"Type": "Single"
@@ -74,7 +74,7 @@
 			{
 				"Name": "Basti",
 				"Absence": 3,
-				"IsDurak": false,
+				"IsDurak": true,
 				"Ticks": [
 					{
 						"Type": "Single",
@@ -91,12 +91,15 @@
 					},  
 					{
 						"Type": "Double"
+					},
+					{ 
+						"Type": "Single"
 					}
 				]
 			},
 			{
 				"Name": "Jojo",
-				"Absence": 5,
+				"Absence": 6,
 				"IsDurak": false,
 				"Ticks": [
 					{
@@ -130,7 +133,7 @@
 			},
 			{
 				"Name": "Alex",
-				"Absence": 15,
+				"Absence": 16,
 				"IsDurak": false, 
 				"IsSeasonChampion": true,
 				"SeasonChampionCount": 1,
