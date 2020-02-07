@@ -4,9 +4,18 @@
 <!-- <p>{{serverName}}</p> -->
 <button class="btn btn-primary"
         [disabled]="!allowNewServer"
-        (click)="onCreateServer()" 
+        (click)="onCreateServer()"
 >Add Server</button>
-<p>{{serverCreationStatus}}</p>
-<app-server></app-server>
-<app-server></app-server>
+
+<p></p>
+<input [(ngModel)]="serverName">
+
+<p *ngIf="serverCreated; else elseBlock">{{serverCreationStatus}}</p>
+
+
+<ng-template #elseBlock>
+  <p>  Content to render when condition is false.</p>
+</ng-template>
+
+<app-server *ngFor="let server of servers"></app-server>
 

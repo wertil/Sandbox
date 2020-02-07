@@ -3,34 +3,39 @@
 // leafletMap();   
 
 
-import Search from './modules/search.js';
-const search = new Search();
+// import Search from './modules/search.js';
+// const search = new Search();
 
-const products = [
-    { name: 'Iphone', price: 200 },
-    { name: 'Motorola', price: 70 },
-    { name: 'Samsung', price: 150 },
-    { name: 'Sony', price: 98 },
-    { name: 'Windows pone', price: 10 }
+const channels = [
+    { name: 'HBO', premium: true },
+    { name: 'LIFE', premium: false },
+    { name: 'Max', premium: true },
+    { name: 'Cooking channel', premium: false },
+    { name: 'WOBI', premium: false }
 ];
+const user = {
+    name: 'Francis',
+    premium: true,
+    premiumChannels: function () {
+        // GET THE PREMIUM CHANNELS IS "PREMIUM" IS true
+        if (this.premium) {
+            return channels.filter((channel) => {
+                return channel.premium;
+            })
+        }
 
-let template = "";
-
-function isOnSale(price) {
-    if (price < 100) {
-        return "<span>On sale !!</span>"
+    },
+    channels: function () {
+        // GET THE NON-PREMIUM CHANNELS
+        return channels.filter((channel) => {
+            return !channel.premium;
+        })
     }
 }
-
-products.forEach(product => {
-    template += `
-    <div class="product"> 
-        <h1>${product.name}</h1>
-        <strong>Prices: $ ${product.price} </strong>
-        ${isOnSale(product.price)}
-    </div>
-    `
-})
+console.log(user.premiumChannels())
+// brings HBO and MAX
+console.log(user.channels())
+ // brings LIFE, COOCKING CHANNEL AND WOBI
 
 
-document.body.insertAdjacentHTML('beforeend', template);
+// document.body.insertAdjacentHTML('beforeend', premiumChannels);
