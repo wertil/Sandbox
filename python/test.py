@@ -17,13 +17,20 @@
 
 
 
-students = ["John", "Mary", "Steve"] # list aka array
-students2 = ["Paul", "John"] 
-#students = ("John", "Mary", "Steve") #Tuple array that cant be modified
-students.append("Tilo")
-students.insert(0,"Peter")
-students.pop(1)
-students.remove("Mary")
-students = students + students2
-print(students)
+# students = ["John", "Mary", "Steve"] # list aka array
+# students2 = ["Paul", "John"] 
+# #students = ("John", "Mary", "Steve") #Tuple array that cant be modified
+# students.append("Tilo")
+# students.insert(0,"Peter")
+# students.pop(1)
+# students.remove("Mary")
+# students = students + students2
+# print(students)
+
+msg = "hello worlds"
+print(msg)
+msg.capitalize()
+print(msg)
+
+
 
