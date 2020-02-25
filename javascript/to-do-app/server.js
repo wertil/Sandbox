@@ -1,9 +1,18 @@
-let express = require("express")
+let express = require('express')
+let mongodb = require('mongodb')
+
 let app = express()
+let db
+
+let connectionString = 'mongodb+srv://todoAppUser:NbXj69VeKIpig8rd2rYv@cluster0-funzw.azure.mongodb.net/TodoApp?retryWrites=true&w=majority'
+mongodb.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
+  db = client.db
+  app.listen(3000)
+})
 
 app.use(express.urlencoded({extended: false}))
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { 
     res.send(`
     <!DOCTYPE html>
     <html>
@@ -13,7 +22,7 @@ app.get('/', (req, res) => {
       <title>Simple To-Do App</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     </head>
-    <body>
+    <body> 
       <div class="container">
         <h1 class="display-4 text-center py-1">To-Do App</h1>
         
@@ -58,8 +67,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/create-item', (req, res) => {
-    console.log(req.body.item)
-    res.send("thanks for submitting")
+    db.collection('items').insertOne({text: req.body.item}, () => {
+      res.send("thanks for submitting")
+    })
+    
 })
 
-app.listen(3000)
+
