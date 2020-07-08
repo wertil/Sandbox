@@ -1,26 +1,46 @@
+<template>
+    <div class="product">
+        <div class="product-image">
+            <img :src="image" alt />
+        </div>
 
-Vue.component('product-details', {
-    props: {
-      details: {
-        type: Array,
-        required: true
-      }
-    },
-    template: `
-      <ul>
-        <li v-for="detail in details">{{ detail }}</li>
-      </ul>
-    `
-  })
+        <div class="product-info">
+            <h1>{{ title }}</h1>
+            <p v-if="inStock">In Stock</p>
+            <!-- <p v-else :class="!inStock ? 'line-through' : ''">Out of Stock</p> -->
+            <p v-else :class="{ 'line-through' : !inStock}">Out of Stock</p>
+            <p>Shipping: {{ shipping }}</p>
+            <product-details :details="details" />
 
-Vue.component('product', {
-    props: {
+            <div
+                v-for="(variant, index) in variants"
+                :key="variant.variantID"
+                class="color-box"
+                :style="{ 'background-color': variant.variantColor }"
+                @mouseover="changeImage(index)"
+            ></div>
+
+            <button
+                @click="addToCart"
+                :disabled="!inStock"
+                :class="{ disabledButton: !inStock }"
+            >Add to Cart</button>
+
+            <div class="cart">
+                <p>Cart ({{ cart }})</p>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+     props: {
       premium: {
         type: Boolean,
         required: true
       }
     },
-    template: '#product',
     data() {
       return {
         brand: 'Vue Mastery',
@@ -69,12 +89,5 @@ Vue.component('product', {
             this.selectedVariant = index
         }
     }
-  })
-  
-
-  var app = new Vue({
-    el: '#app',
-    data: {
-      premium: true
-    }
-})
+};
+</script>
