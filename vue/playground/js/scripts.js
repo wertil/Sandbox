@@ -1,4 +1,23 @@
 
+var eventBus = new Vue()
+
+Vue.component('product-tabs', {
+    template:'#product-tabs',
+    props: {
+        reviews: {
+          type: Array,
+          required: true
+        }
+      },
+    data() {
+        return {
+            tabs: ['Reviews', 'Make a Review'],
+            selectedTab: 'Reviews',
+            review: null
+        }
+    }
+})
+
 Vue.component('product-details', {
     props: {
       details: {
@@ -11,6 +30,43 @@ Vue.component('product-details', {
         <li v-for="detail in details">{{ detail }}</li>
       </ul>
     `
+  })
+
+  Vue.component('product-review', {
+    template: '#product-review',
+    data() {
+        return {
+            name: null,
+            review: null,
+            rating: null,
+            recommend: null,
+            errors: []
+        }
+    },
+    methods: {
+        onSubmit() {
+            this.errors = []
+            if (this.name && this.review && this.rating && this.recommend) {
+                   let productReview = {
+                name: this.name,
+                review: this.review,
+                rating: this.rating,
+                recommend: this.recommend
+            }
+            eventBus.$emit('review-submitted', productReview)
+            this.name = null
+            this.review = null
+            this.rating = null
+            this.recrecommendommend = null
+            }    
+            else {
+                if(!this.name) this.errors.push("Name required")
+                if(!this.review) this.errors.push("Review required")
+                if(!this.rating) this.errors.push("Rating required")
+            }     
+        }
+    
+    }
   })
 
 Vue.component('product', {
@@ -41,7 +97,7 @@ Vue.component('product', {
                 variantQuantity: 0
             }
         ],
-        cart: 0
+        reviews: []
       }
     },
     computed: {
@@ -63,11 +119,19 @@ Vue.component('product', {
     },
     methods: {
         addToCart() {
-            this.cart += 1
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantID)
+        },
+        removefromCart(){
+            this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantID)
         },
         changeImage(index) {
             this.selectedVariant = index
         }
+    },
+    mounted() {
+        eventBus.$on('review-submitted', productReview => {
+            this.reviews.push(productReview)
+        })
     }
   })
   
@@ -75,6 +139,15 @@ Vue.component('product', {
   var app = new Vue({
     el: '#app',
     data: {
-      premium: true
+      premium: true,
+      cart: []
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id)
+        },
+        removeItem(id) {
+            this.cart.pop(id)
+        }
     }
 })
