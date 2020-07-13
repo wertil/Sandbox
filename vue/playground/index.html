@@ -40,8 +40,18 @@
                 <p v-if="inStock">In Stock</p>
                 <!-- <p v-else :class="!inStock ? 'line-through' : ''">Out of Stock</p> -->
                 <p v-else :class="{ 'line-through' : !inStock}">Out of Stock</p>
-                <p> Shipping: {{ shipping }}</p>
-                <product-details :details="details" />
+                
+                <div>
+                    <span class="tab" 
+                        v-for="(tab,index) in tabs" :key="index"
+                        @click=" selectedTab = tab "
+                        :class="{ activeTab : selectedTab===tab }"
+                        >{{ tab }}</span>
+                </div>
+                
+                <p v-show=" selectedTab==='Shipping' ">{{ shipping }}</p>
+                
+                <product-details :details="details" v-show=" selectedTab==='Details' ">{{ />
 
                 <div v-for="(variant, index) in variants" :key="variant.variantID" class="color-box"
                     :style="{ 'background-color': variant.variantColor }" @mouseover="changeImage(index)">

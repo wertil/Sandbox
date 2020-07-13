@@ -82,6 +82,8 @@ Vue.component('product', {
         brand: 'Vue Mastery',
         product: 'Socks',
         selectedVariant: 0,
+        tabs: ['Details', 'Shipping'],
+        selectedTab: 'Details',
         details: ["80% cotton", "20% polyester", "Gender-neutral"],
         variants: [
             {
