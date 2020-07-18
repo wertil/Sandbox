@@ -5,7 +5,11 @@
     <template v-if="page != 1">
         <router-link :to="{ name: 'event-list', query: {page: page - 1}}">Prev Page</router-link> |
     </template>
-    <router-link :to="{ name: 'event-list', query: {page: page + 1}}">Next Page</router-link>
+    <router-link 
+        v-if="page < (totalCount / resultPerPage)"
+        :to="{ name: 'event-list', query: {page: page + 1}}">
+        Next Page
+    </router-link>
   </div>
 </template>
 
@@ -14,13 +18,18 @@ import EventCard from '../components/EventCard.vue'
 import { mapState } from 'vuex'
 
 export default {
-	name: "EventList",
+    name: "EventList",
+    data() {
+        return {
+            resultPerPage: 4
+        }
+    },
     components: {
         EventCard
     },
     created() {
         this.$store.dispatch('fetchEvents', {
-            perPage: 3,
+            perPage: this.resultPerPage,
             page: this.page
         })
     },
@@ -28,9 +37,7 @@ export default {
         page() {
             return parseInt(this.$route.query.page) || 1
         },
-       ...mapState(['events'])
+       ...mapState(['events', 'totalCount'])
     }
 }
 </script>
-
-<style lang="scss" scoped></style>
