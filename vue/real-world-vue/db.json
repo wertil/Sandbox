@@ -137,6 +137,20 @@
       "date": "",
       "time": "",
       "attendees": []
+    },
+    {
+      "id": 3362575,
+      "category": "",
+      "organizer": {
+        "id": "abc123",
+        "name": "Tilo"
+      },
+      "title": "",
+      "description": "",
+      "location": "go",
+      "date": "2020-05-06T12:43:00.000Z",
+      "time": "",
+      "attendees": []
     }
   ]
 }
