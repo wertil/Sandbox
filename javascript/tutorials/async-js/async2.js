@@ -7,10 +7,10 @@ const API = {
 window.onload = () => {
     const price = "19.99"
     let total
-    const calcTotal = (count) => {
+    const calcTotal = async (count) => {
         
        // faking call to an API to get the price
-        return new Promise((resolve, reject) => {
+        return await new Promise((resolve, reject) => {
            setTimeout(()=> {
             total = count * price
             resolve(total)

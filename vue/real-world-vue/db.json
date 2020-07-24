@@ -151,6 +151,34 @@
       "date": "2020-05-06T12:43:00.000Z",
       "time": "",
       "attendees": []
+    },
+    {
+      "id": 9987060,
+      "category": "",
+      "organizer": {
+        "id": "abc123",
+        "name": "Tilo"
+      },
+      "title": "adsfasdffds",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
+    },
+    {
+      "id": 7666002,
+      "category": "community",
+      "organizer": {
+        "id": "abc123",
+        "name": "Tilo"
+      },
+      "title": "Base Element Test",
+      "description": "",
+      "location": "",
+      "date": "",
+      "time": "",
+      "attendees": []
     }
   ]
 }

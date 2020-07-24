@@ -13,14 +13,20 @@
         <option v-for="cat in categories" :key="cat">{{ cat }}</option>
       </select>
       <h3>Name & describe your event</h3>
-      <div class="field">
-        <label>Title</label>
-        <input
-          v-model="event.title"
-          type="text"
-          placeholder="Add an event title"
-        />
-      </div>
+
+      <!-- 
+        If we look at the documentation for v-model, we’ll find that v-model="event.title" is really just syntactic sugar for:
+        :value="event.title"
+        @input="(value) => { event.title = value }"
+        https://vuejs.org/v2/guide/components.html#Using-v-model-on-Components
+         -->
+      <BaseInput
+        label="Title"
+        v-model="event.title"
+        type="text"
+        placeholder="Add an event title"
+      />
+
       <div class="field">
         <label>Description</label>
         <input
@@ -29,6 +35,7 @@
           placeholder="Add a description"
         />
       </div>
+
       <h3>Where is your event?</h3>
       <div class="field">
         <label>Location</label>
@@ -57,6 +64,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import Datepicker from 'vuejs-datepicker'
+import NProgress from 'nprogress'
 
 export default {
   components: {
@@ -80,13 +88,19 @@ export default {
   },
   methods: {
     createEvent() {
-      this.$store.dispatch('event/createEvent', this.event).then(() => {
-        this.$router.push({
-          name: 'event-show',
-          params: { id: this.event.id }
+      NProgress.start() // <-- Start the progress bar
+      this.$store
+        .dispatch('event/createEvent', this.event)
+        .then(() => {
+          this.$router.push({
+            name: 'event-show',
+            params: { id: this.event.id }
+          })
+          this.event = this.createFreshEvent()
         })
-        this.event = this.createFreshEvent()
-      })
+        .catch(() => {
+          NProgress.done() // <-- if errors out stop the progress bar
+        })
     },
     createFreshEvent() {
       const user = this.$store.state.user.user

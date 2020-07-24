@@ -31,12 +31,34 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+import NProgress from 'nprogress' // <--- Include the progress bar
+import store from '@/store' // <--- Include our Vuex store
+
 export default {
-  props: {
-    event: {
-      type: Object,
-      required: true
-    }
+  props: ['id'],
+
+  // getting event, Solution without beforeRouteEnter
+  // created() {
+  //   this.fetchEvent(this.id)
+  // },
+  //  methods: {
+  //   ...mapActions('event', ['fetchEvent'])
+  // },
+
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    // doesn't have access to 'this'
+    NProgress.start() // Start the progress bar
+    store.dispatch('event/fetchEvent', routeTo.params.id).then(() => {
+      NProgress.done() // When the action is done complete progress bar
+      next() // Only once this is called does the navigation continue
+    })
+  },
+
+  computed: {
+    ...mapState({
+      event: state => state.event.event
+    })
   }
 }
 </script>
