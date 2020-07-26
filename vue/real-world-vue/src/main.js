@@ -3,6 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
+
+import DateFilter from './filters/date'
+Vue.filter('date', DateFilter)
+
 Vue.config.productionTip = false
 
 // Manual component import

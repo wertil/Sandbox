@@ -4,7 +4,7 @@
     <!-- value="value" -> binds to our prop -->
     <!-- @input="updateValue" -> listens for input event and triggers method -->
     <!-- v-bind="$attrs" -> specifies this element will inherit attributes -->
-    <input :value="value" @input="updateValue" v-bind="$attrs" />
+    <input :value="value" v-bind="$attrs" v-on="listeners" />
   </div>
 </template>
 
@@ -14,6 +14,14 @@ export default {
   props: {
     value: [String, Number],
     label: String
+  },
+  computed: {
+    listeners() {
+      return {
+        ...this.$listeners,
+        input: this.updateValue
+      }
+    }
   },
   // https://vuejs.org/v2/guide/components.html#Using-v-model-on-Components
   methods: {

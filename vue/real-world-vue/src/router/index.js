@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import EventList from '../views/EventList.vue'
 import EventShow from '../views/EventShow.vue'
+import Example from '../views/Example.vue'
 import EventCreate from '../views/EventCreate.vue'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
@@ -22,6 +23,11 @@ const routes = [
     path: '/event/create',
     name: 'event-create',
     component: EventCreate
+  },
+  {
+    path: '/example',
+    name: 'example',
+    component: Example
   },
   {
     path: '/event/:id',

@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -99,7 +99,14 @@ small {
 .-text-base {
   color: #000;
 }
-.-text-error {
+.error {
+  select,
+  input {
+    border-color: tomato;
+  }
+}
+.-text-error,
+.errorMessage {
   color: tomato;
 }
 .-text-gray {
