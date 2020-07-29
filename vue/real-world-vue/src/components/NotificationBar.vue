@@ -1,3 +1,5 @@
+import BaseButton from "./BaseButton.vue";
+
 <template>
   <div class="notification-bar" :class="notificationTypeClass">
     <p>{{ notification.message }}</p>
@@ -15,7 +17,8 @@ export default {
   },
   data() {
     return {
-      timeout: null
+      timeout: null,
+      test: 'test'
     }
   },
   computed: {

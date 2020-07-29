@@ -6,6 +6,7 @@ import Example from '../views/Example.vue'
 import EventCreate from '../views/EventCreate.vue'
 import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
+import Categories from '../views/Categories.vue'
 
 import NProgress from 'nprogress'
 import store from '@/store'
@@ -18,6 +19,11 @@ const routes = [
     name: 'event-list',
     component: EventList,
     props: true // We'll set the page parameter, so we want to send it in as a prop
+  },
+  {
+    path: '/categories',
+    name: 'categories',
+    component: Categories
   },
   {
     path: '/event/create',
