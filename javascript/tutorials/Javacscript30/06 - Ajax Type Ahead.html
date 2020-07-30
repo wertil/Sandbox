@@ -34,7 +34,8 @@ function numberWithCommas(x) {
 function displayMatches() {
     const matchArray = findMatches(this.value, cities)
     const html = matchArray.map(city => {
-        const regex = new RegExp(this.value, 'gi'); // g=global (entire string), i = incensitive
+      // g=global (entire string), i = incensitive
+        const regex = new RegExp(this.value, 'gi'); 
         const cityName = city.city.replace(regex, `<span class="hl">${this.value}</span>`)
         const statetName = city.state.replace(regex, `<span class="hl">${this.value}</span>`)
         return `

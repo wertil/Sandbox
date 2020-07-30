@@ -3,7 +3,7 @@
        <div class="category-item"
         @click="openChild"
         :style="`--cat-padding: ${levelsIn * 1}rem;`"
-        v-html="category.name">
+        v-html="getName">
         </div>
         <template v-if="showChild">
           <CategoryItem v-for="(categoryChild, index) in category.children" :key="index" :category="categoryChild" :levelsIn="levelsIn + 1"          
@@ -34,6 +34,12 @@ import CategoryItem from '@/components/CategoryItem.vue'
         methods: {
             openChild() {
                 this.showChild = !this.showChild
+            }
+        },
+        computed: {
+            getName () {
+                if (this.category.nameHighlighted) return this.category.nameHighlighted
+                return this.category.name
             }
         }
     }
