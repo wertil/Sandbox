@@ -16,6 +16,7 @@
 
 <script>
 import CategoryItem from '@/components/CategoryItem.vue'
+import { uuid } from '@/utils'
 
 export default {
     name: 'Categories',
@@ -59,22 +60,44 @@ export default {
             return regex.test(name)
         },
 
-        loopOfDeatch(element) {
+        // creates elements for matchArray
+        createMatchElement(element, path = element.name) {
+            // create an empty Child array
+            const childArray = []
+
+            // create unique for element:
+            const elementId = uuid()
+            element.Id = elementId
+
+            // ADD PATH TO DATA???????
+            element.path = [path]
+            element.path.push(element.name)
+
+            // loop through the children and create matched element, add to child array
+            // recursive function
+            if (element.children != undefined) {
+                element.children.forEach(child => {                    
+                    childArray.push(this.createMatchElement(child, child.name))
+                })
+            }
+
+            // if element contains search term:
             if (this.isMatch(element.name)) {
                 const nameHighlighted = this.highlightSearchMatch(element.name)
-                this.matchArray.push({
+                return {
                     nameHighlighted: nameHighlighted,
                     match: true,
+                    parentID: elementId,
                     ...element,
-                    children: []
-                })
+                    children: childArray
+                }
             } else {
-                this.matchArray.push({ match: false, ...element, children: [] })
+                return { match: false, parentID: elementId, ...element, children: childArray }
             }
         },
 
         highlightSearchMatch(value) {
-            // surrouding the searchterm inside the category name with a span:
+            // surrounding the searchterm inside the category name with a span:
             const regex = new RegExp(this.searchTerm, 'gi')
             const nameHighlighted = value.replace(
                 regex,
@@ -87,19 +110,17 @@ export default {
             // open Category Treee
             this.openCategoryTree = true
 
+            // Create new Array of the Tree with highlighted matches
             this.matchArray = []
 
-            // Create new Array of the Tree with highlighted matches           
             this.dataOriginal.forEach(element => {
-                
-                // if the Search Term matches the name:
-                this.loopOfDeatch(element) 
-                // if(element.children != undefined) {
-                //     element.children.forEach(element => {
-                //         this.loopOfDeatch(element) 
-                //     });                    
-                // }
-               
+                // only push if element has children or is a match
+                if (
+                    element.children != undefined ||
+                    this.isMatch(element.name)
+                ) {
+                    this.matchArray.push(this.createMatchElement(element))
+                }
             })
 
             // if new Array has content, override data, otherwise show "no results" message
@@ -108,9 +129,8 @@ export default {
             } else {
                 this.data = [{ name: 'no matches found' }]
             }
-
-            console.log(this.matchArray)
         },
+
         closeDropDown() {
             this.openCategoryTree = false
             this.data = this.dataOriginal

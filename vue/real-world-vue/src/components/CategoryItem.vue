@@ -14,6 +14,7 @@
 
 <script>
 import CategoryItem from '@/components/CategoryItem.vue'
+
     export default {
         name: 'CategoryItem',
         components: { CategoryItem },
