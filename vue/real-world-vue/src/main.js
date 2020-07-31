@@ -9,6 +9,8 @@ Vue.use(Vuelidate)
 import DateFilter from './filters/date'
 Vue.filter('date', DateFilter)
 
+
+
 Vue.config.productionTip = false
 
 // Manual component import

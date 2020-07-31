@@ -5,12 +5,15 @@
       <router-link :to="{ name: 'event-list' }">List</router-link>|
       <router-link :to="{ name: 'event-create' }">Create</router-link>|
       <router-link :to="{ name: 'categories' }">Categories</router-link>
+      <router-link :to="{ name: 'categories-felix' }">Cat Felix</router-link>
     </nav>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'NavBar'
+}
 </script>
 
 <style scoped>

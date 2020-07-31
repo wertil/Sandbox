@@ -5,12 +5,13 @@
       placeholder="search categories"
       v-model="searchTerm"
       @keyup="searchIt"
+      @blur="() => {if(!searchTerm){closeDropDown()}}"
     />
     <div @click="closeDropDown" class="close">close</div>
     <div v-if="openCategoryTree" class="category-box">
       <CategoryItem
         v-for="(category, index) in data"
-        :key="index" 
+        :key="index"
         :category="category"
         :searchCategoryTree="searchCategoryTree"
       />
@@ -25,7 +26,7 @@ import { uuid } from '@/utils'
 import _ from 'lodash'
 
 export default {
-    name: 'Categories',
+    name: 'CategoriesFelix',
     components: { CategoryItem },
     data() {
         return {
@@ -53,9 +54,9 @@ export default {
 
         findMatches(term, array = this.dataOriginal) {
             // finds the searchterm inside name
+            const regex = new RegExp(term, 'gi')
             return array.filter(category => {
                 // g=global (entire string), i = incensitive:
-                const regex = new RegExp(term, 'gi')
                 return category.name.match(regex)
             })
         },
@@ -71,41 +72,41 @@ export default {
         createMatchElement(element, path = element.name) {
             // create an empty Child array
             const childArray = []
-
-            // create unique for element:
-            const elementId = uuid() 
-            element.Id = elementId
-
-            // ADD PATH TO DATA???????
-            element.path = [path]
-            element.path.push(element.name)
+            const isMatched = this.isMatch(element.name);
 
             // loop through the children and create matched element, add to child array
-            // recursive function 
-            if (element.children != undefined) {
+            // recursive function
+            if (element.children !== undefined) {
                 element.children.forEach(child => {
-                    childArray.push(this.createMatchElement(child, child.name))
-                })
-            } 
 
-            // if element contains search term:
-            if (this.isMatch(element.name)) {
-                const nameHighlighted = this.highlightSearchMatch(element.name)  
-                return {
+                  const matchedElement = this.createMatchElement(child, child.name);
+                  if(matchedElement){
+                    childArray.push(matchedElement);
+                  }
+                })
+                if(childArray.length){
+                  const nameHighlighted = this.highlightSearchMatch(element.name);
+                  return {
                     nameHighlighted: nameHighlighted,
                     match: true,
-                    parentID: elementId,
                     ...element,
                     children: childArray
-                }
-            } else {
-                return {
-                    match: false,
-                    parentID: elementId,
-                    ...element,
-                    children: childArray
+                  }
                 }
             }
+            else {
+              if(isMatched){
+                const nameHighlighted = this.highlightSearchMatch(element.name);
+                return {
+                  nameHighlighted: nameHighlighted,
+                  match: true,
+                  ...element,
+                  children: []
+                }
+              }
+            }
+
+            return null;
         },
 
         highlightSearchMatch(value) {
@@ -124,15 +125,13 @@ export default {
             this.searchCategoryTree = true
 
             // Create new Array of the Tree with highlighted matches
-            this.matchArray = []
+            this.matchArray = [];
 
             this.dataOriginal.forEach(element => {
+                const matchedElement = this.createMatchElement(element);
                 // only push if element has children or is a match
-                if (
-                    element.children != undefined ||
-                    this.isMatch(element.name)
-                ) {
-                    this.matchArray.push(this.createMatchElement(element))
+                if (matchedElement !== null) {
+                    this.matchArray.push(matchedElement)
                 }
             })
 
@@ -166,7 +165,7 @@ export default {
 
 .category-dropdown {
     padding: 0.5rem;
-    border: 1px solid grey; 
+    border: 1px solid grey;
     pointer-events: all;
 }
 

@@ -5,8 +5,11 @@
         :style="`--cat-padding: ${levelsIn * 1}rem;`"
         v-html="getName">
         </div>
-        <template v-if="showChild">
-          <CategoryItem v-for="(categoryChild, index) in category.children" :key="index" :category="categoryChild" :levelsIn="levelsIn + 1"          
+        <template v-if="showChild || searchCategoryTree">
+          <CategoryItem 
+            v-for="(categoryChild, index) in category.children" :key="index" :category="categoryChild" 
+            :levelsIn="levelsIn + 1"    
+            :searchCategoryTree="searchCategoryTree"      
            />
         </template>
     </div>
@@ -25,7 +28,12 @@ import CategoryItem from '@/components/CategoryItem.vue'
             levelsIn: {
                 type: Number,
                 default: 1
-            }          
+            },
+            searchCategoryTree: {
+                 // check if category tree is unfolded to see all results:
+                type: Boolean,
+                default: false
+            }        
          },
           data() {
                 return {
