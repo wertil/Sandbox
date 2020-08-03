@@ -8,6 +8,7 @@ import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
 import Categories from '../views/Categories.vue'
 import CategoriesFelix from '../views/CategoriesFelix.vue'
+import Test from '../views/Test.vue'
 
 import NProgress from 'nprogress'
 import store from '@/store'
@@ -30,6 +31,11 @@ const routes = [
     path: '/categories-felix',
     name: 'categories-felix',
     component: CategoriesFelix
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: Test
   },
   {
     path: '/event/create',

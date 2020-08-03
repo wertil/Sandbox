@@ -1,32 +1,47 @@
 <template>
-  <div class="category-view">
-    <input
-      class="cat-search"
-      placeholder="search categories"
-      v-model="searchTerm"
-      @keyup="searchIt"
-    />
-    <div @click="closeDropDown" class="close">close</div>
-    <div v-if="openCategoryTree" class="category-box">
-      <CategoryItem
-        v-for="(category, index) in data"
-        :key="index" 
-        :category="category"
-        :searchCategoryTree="searchCategoryTree"
-      />
+    <div class="category-view">
+        <input
+            class="cat-search"
+            placeholder="search categories"
+            v-model="searchTerm"
+            @keyup="searchIt"
+        />
+        <div @click="closeDropDown" class="close">close</div>
+
+        <div class="result-box">
+
+            <Transition name="fade">
+
+                <div class="category-box" v-if="openCategoryTree">
+                    <CategoryItem
+                        v-for="(category, index) in data"
+                        :key="index"
+                        :category="category"
+                        :searchCategoryTree="searchCategoryTree"
+                    />
+                </div>
+            </Transition>
+
+            <div v-if="!openCategoryTree" class="category-dropdown" @click="toggleCategoryTree">Select Category</div>
+
+        </div>
+
+
+
+
+
+
     </div>
-    <div v-else class="category-dropdown" @click="toggleCategoryTree">Select Category</div>
-  </div>
 </template>
 
 <script>
 import CategoryItem from '@/components/CategoryItem.vue'
-import { uuid } from '@/utils'
+import {uuid} from '@/utils'
 import _ from 'lodash'
 
 export default {
     name: 'Categories',
-    components: { CategoryItem },
+    components: {CategoryItem},
     data() {
         return {
             data: {},
@@ -35,6 +50,7 @@ export default {
             searchTerm: '',
             openCategoryTree: false,
             searchCategoryTree: false
+
         }
     },
     beforeMount() {
@@ -47,6 +63,10 @@ export default {
             })
     },
     methods: {
+        addContact() {
+            this.contacts.push(this.newContact)
+            this.newContact = ""
+        },
         toggleCategoryTree() {
             this.openCategoryTree = !this.openCategoryTree
         },
@@ -68,44 +88,40 @@ export default {
         },
 
         // creates elements for matchArray
-        createMatchElement(element, path = element.name) {
+        createMatchElement(element) {
             // create an empty Child array
             const childArray = []
 
-            // create unique for element:
-            const elementId = uuid() 
-            element.Id = elementId
-
-            // ADD PATH TO DATA???????
-            element.path = [path]
-            element.path.push(element.name)
-
             // loop through the children and create matched element, add to child array
-            // recursive function 
-            if (element.children != undefined) {
+            // recursive function
+            let whatLevel = 0;
+
+            if (element.children) {
                 element.children.forEach(child => {
-                    childArray.push(this.createMatchElement(child, child.name))
+                    whatLevel++
+                    const dot = '.'
+                    console.log('Child', dot.repeat(whatLevel), whatLevel, child.name)
+                    childArray.push(this.createMatchElement(child))
                 })
-            } 
+            }
 
             // if element contains search term:
             if (this.isMatch(element.name)) {
-                const nameHighlighted = this.highlightSearchMatch(element.name)  
+                const nameHighlighted = this.highlightSearchMatch(element.name)
                 return {
                     nameHighlighted: nameHighlighted,
                     match: true,
-                    parentID: elementId,
                     ...element,
                     children: childArray
                 }
             } else {
                 return {
                     match: false,
-                    parentID: elementId,
                     ...element,
                     children: childArray
                 }
             }
+
         },
 
         highlightSearchMatch(value) {
@@ -126,24 +142,23 @@ export default {
             // Create new Array of the Tree with highlighted matches
             this.matchArray = []
 
+            let firstLevel = 0;
             this.dataOriginal.forEach(element => {
-                // only push if element has children or is a match
-                if (
-                    element.children != undefined ||
-                    this.isMatch(element.name)
-                ) {
-                    this.matchArray.push(this.createMatchElement(element))
+                firstLevel++;
+                console.log('Level', firstLevel, element.name)
+
+                const matchedElement = this.createMatchElement(element);
+                if (matchedElement !== null) {
+                    this.matchArray.push(matchedElement)
                 }
+
             })
 
             // if new Array has content, override data, otherwise show "no results" message
             if (this.matchArray.length) {
-                // const noMatches = _.remove(this.matchArray, element => {
-                //     return element.match == false
-                // })
                 this.data = this.matchArray
             } else {
-                this.data = [{ name: 'no matches found' }]
+                this.data = [{name: 'no matches found'}]
             }
         },
 
@@ -166,7 +181,7 @@ export default {
 
 .category-dropdown {
     padding: 0.5rem;
-    border: 1px solid grey; 
+    border: 1px solid grey;
     pointer-events: all;
 }
 
@@ -181,4 +196,14 @@ export default {
     font-weight: bold;
     text-transform: uppercase;
 }
+
+.category-box {
+    width: 100%;
+}
+
+.result-box {
+    position: relative;
+}
+
+
 </style>

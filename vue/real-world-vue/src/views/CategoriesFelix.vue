@@ -69,21 +69,21 @@ export default {
         },
 
         // creates elements for matchArray
-        createMatchElement(element, path = element.name) {
-            // create an empty Child array
+        createMatchElement(element) {
+
             const childArray = []
             const isMatched = this.isMatch(element.name);
 
-            // loop through the children and create matched element, add to child array
-            // recursive function
+            // loop through the children if they exist
             if (element.children !== undefined) {
                 element.children.forEach(child => {
-
-                  const matchedElement = this.createMatchElement(child, child.name);
+                  // recursive function
+                  const matchedElement = this.createMatchElement(child);
                   if(matchedElement){
                     childArray.push(matchedElement);
                   }
                 })
+
                 if(childArray.length){
                   const nameHighlighted = this.highlightSearchMatch(element.name);
                   return {
@@ -94,6 +94,7 @@ export default {
                   }
                 }
             }
+            // if element doesn't have children and is a match
             else {
               if(isMatched){
                 const nameHighlighted = this.highlightSearchMatch(element.name);
@@ -127,6 +128,7 @@ export default {
             // Create new Array of the Tree with highlighted matches
             this.matchArray = [];
 
+            // iterate through the first level of the tree
             this.dataOriginal.forEach(element => {
                 const matchedElement = this.createMatchElement(element);
                 // only push if element has children or is a match
@@ -137,9 +139,6 @@ export default {
 
             // if new Array has content, override data, otherwise show "no results" message
             if (this.matchArray.length) {
-                // const noMatches = _.remove(this.matchArray, element => {
-                //     return element.match == false
-                // })
                 this.data = this.matchArray
             } else {
                 this.data = [{ name: 'no matches found' }]

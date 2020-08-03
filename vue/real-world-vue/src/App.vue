@@ -2,7 +2,11 @@
   <div id="app">
     <NavBar />
     <NotificationContainer />
-    <router-view :key="$route.fullPath" />
+
+      <Transition name="slide-fade" mode="out-in">
+          <router-view :key="$route.fullPath"/>
+      </Transition>
+
   </div>
 </template>
 
@@ -18,6 +22,9 @@ export default {
 </script>
 
 <style lang="scss">
+
+@import "styles/transitions";
+
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -60,27 +67,15 @@ h6 {
   font-family: 'Montserrat', sans-serif;
 }
 h1 {
-  font-size: 50px;
+  font-size: 2rem;
   font-weight: 700;
 }
 h2 {
-  font-size: 38px;
+  font-size: 1.8rem;
   font-weight: 700;
 }
 h3 {
-  font-size: 28px;
-  font-weight: 700;
-}
-h4 {
-  font-size: 21px;
-  font-weight: 700;
-}
-h5 {
-  font-size: 16px;
-  font-weight: 700;
-}
-h6 {
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 b,
@@ -248,4 +243,19 @@ select:focus::ms-value {
 select::ms-expand {
   opacity: 0;
 }
+
+button {
+    display: inline-flex;
+    align-items: center;
+    height: 2.2em;
+    margin: 0.5em;
+    border-radius: 0.3em;
+    background: linear-gradient(to right, #16c0b0, #84cf6a);
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+
+
 </style>
