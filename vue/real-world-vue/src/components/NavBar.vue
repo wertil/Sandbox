@@ -6,7 +6,7 @@
       <router-link :to="{ name: 'event-create' }">Create</router-link> |
       <router-link :to="{ name: 'categories' }">Categories</router-link> |
       <router-link :to="{ name: 'categories-felix' }">Cat Felix</router-link> |
-      <router-link :to="{ name: 'test' }">Test</router-link>
+      <router-link :to="{ name: 'animation' }">Animation</router-link>
     </nav>
   </div>
 </template>

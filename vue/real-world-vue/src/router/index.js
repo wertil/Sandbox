@@ -8,7 +8,7 @@ import NotFound from '../views/NotFound.vue'
 import NetworkIssue from '../views/NetworkIssue.vue'
 import Categories from '../views/Categories.vue'
 import CategoriesFelix from '../views/CategoriesFelix.vue'
-import Test from '../views/Test.vue'
+import Animation from '../views/Animation.vue'
 
 import NProgress from 'nprogress'
 import store from '@/store'
@@ -33,9 +33,9 @@ const routes = [
     component: CategoriesFelix
   },
   {
-    path: '/test',
-    name: 'test',
-    component: Test
+    path: '/animation',
+    name: 'animation',
+    component: Animation
   },
   {
     path: '/event/create',
