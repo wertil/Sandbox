@@ -12,36 +12,42 @@
             :css="false"
         >
             <!-- :css="false" -> tells vue not use css transition classes-->
-        <div v-if="showDrawer" class="drawer">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+            <div v-if="showDrawer" class="drawer">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </transition>
 
 
-            <div class="contacts-box" >
-                <input v-model="newContact" placeholder="Name" type="text"/>
+        <div class="contacts-box">
+            <input v-model="newContact" placeholder="Name" type="text"/>
 
-                <button @click="addContact">Add Contact</button>
-                <button @click="sortContacts">Sort</button>
+            <button @click="addContact">Add Contact</button>
+            <button @click="sortContacts">Sort</button>
 
-                <transition-group tag="ul" name="slide-up">
-                    <li v-for="(contact, index) in contacts" :key="index">
-                        {{ contact }}
-                    </li>
-                </transition-group>
-            </div>
+            <transition-group tag="ul" name="slide-up">
+                <li v-for="(contact, index) in contacts" :key="index">
+                    {{ contact }}
+                </li>
+            </transition-group>
+        </div>
 
+        <SimpleAnimation />
+
+        <Stagger />
 
     </div>
 </template>
 
 <script>
 import Velocity from 'velocity-animate'
+import SimpleAnimation from "@/components/animations/SimpleAnimation";
+import Stagger from "@/components/animations/Stagger";
 
 export default {
+    components: {Stagger, SimpleAnimation},
     data() {
         return {
             showDrawer: false,
@@ -72,15 +78,15 @@ export default {
         enter(el, done) {
             Velocity(
                 el,
-                { opacity: 1, width: '100%', height: '20em'},
-                { duration: 1000, easing: [60, 10], complete: done }
+                {opacity: 1, width: '100%', height: '20em'},
+                {duration: 1000, easing: [60, 10], complete: done}
             )
         },
         leave(el) {
             Velocity(
                 el,
-                { opacity: 0, width: '0em', height: '0em'},
-                { duration: 500, easing: 'easeInCubic', complete: done }
+                {opacity: 0, width: '0em', height: '0em'},
+                {duration: 500, easing: 'easeInCubic', complete: done}
             )
         }
 
@@ -143,6 +149,7 @@ ul {
     box-shadow: 0.08em 0.03em 0.4em #ababab;
     padding-top: 0.7em;
 }
+
 .drawer div {
     height: 3.5em;
     width: 95%;

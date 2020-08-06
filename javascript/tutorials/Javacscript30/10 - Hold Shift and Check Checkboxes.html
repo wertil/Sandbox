@@ -101,19 +101,36 @@ When a user clicks a checkbox, holds Shift, and then clicks another checkbox a f
     let lastChecked
 
     function handleCheck(e) {
+        let inBetween = false
         // check if they had the shift key down:
-        if(e.shiftKey && this.checked) {
+        if (e.shiftKey) {
 
+            // loop through all checkboxes
+            checkboxes.forEach(checkbox => {
+                if (checkbox === this || checkbox === lastChecked) {
+                    inBetween = !inBetween
+                }
+                if(inBetween) {
+                    checkbox.checked = true
+                }
+            })
+
+        } else {
+
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false
+            })
+            this.checked = true
         }
 
         // remember which checkbox was checked:
         lastChecked = this
     }
 
-
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('click', handleCheck)
+    checkboxes.forEach( checkbox => {
+        checkbox.addEventListener("click", handleCheck)
     })
+
 
 </script>
 </body>
