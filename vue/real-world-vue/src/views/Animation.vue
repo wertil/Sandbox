@@ -38,6 +38,8 @@
 
         <Stagger />
 
+        <State />
+
     </div>
 </template>
 
@@ -45,9 +47,10 @@
 import Velocity from 'velocity-animate'
 import SimpleAnimation from "@/components/animations/SimpleAnimation";
 import Stagger from "@/components/animations/Stagger";
+import State from "@/components/animations/State";
 
 export default {
-    components: {Stagger, SimpleAnimation},
+    components: {State, Stagger, SimpleAnimation},
     data() {
         return {
             showDrawer: false,
