@@ -10,6 +10,6 @@
 // import { sumMultiples } from './modules/binary-search.js'
 // console.log(sumMultiples())
 
-import { firstUniqueCharacter2 } from './interview-expresso/first-unique-character.js'
-console.log(firstUniqueCharacter2('Aaron'))
+import { validPalendrom } from './interview-expresso/strings-arrays/valid-palendrom.js'
+console.log(validPalendrom('Rentner.-rentner'))
 
