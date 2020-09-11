@@ -1,6 +1,7 @@
 <template>
     <div class="state">
         <div :style="{ width: tweenedNumber + 'px' }" class="bar">
+            <!--  toFixed: clears decimal numbers-->
             <span>{{ tweenedNumber.toFixed(0) }}</span>
         </div>
     </div>
@@ -29,6 +30,7 @@ export default {
     },
     methods: {
         randomNumber() {
+            // Random number betwen 800 and 0:
             this.number = Math.floor(Math.random() * (800 - 0))
         }
     },

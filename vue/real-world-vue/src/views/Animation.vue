@@ -40,6 +40,8 @@
 
         <State />
 
+        <Timeline />
+
     </div>
 </template>
 
@@ -48,9 +50,10 @@ import Velocity from 'velocity-animate'
 import SimpleAnimation from "@/components/animations/SimpleAnimation";
 import Stagger from "@/components/animations/Stagger";
 import State from "@/components/animations/State";
+import Timeline from "@/components/animations/Timeline";
 
 export default {
-    components: {State, Stagger, SimpleAnimation},
+    components: {Timeline, State, Stagger, SimpleAnimation},
     data() {
         return {
             showDrawer: false,
