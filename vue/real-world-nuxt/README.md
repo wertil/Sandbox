@@ -1,4 +1,4 @@
-# Nuxt
+# real-world-nuxt
 
 ## Build Setup
 

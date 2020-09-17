@@ -10,6 +10,6 @@
 // import { sumMultiples } from './modules/binary-search.js'
 // console.log(sumMultiples())
 
-import { rotateImage } from './interview-expresso/strings-arrays/rotate-image.js'
-console.log(rotateImage( [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]))
+import { twoSum } from './interview-expresso/strings-arrays/two-sum.js'
+console.log(twoSum())
 
