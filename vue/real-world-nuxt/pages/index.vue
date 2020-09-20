@@ -8,6 +8,12 @@
 
 
 export default {
+    // method for vue-meta
+    head() {
+        return {
+            title: 'Event Listing '
+        }
+    }
 
 }
 </script>

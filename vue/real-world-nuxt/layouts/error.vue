@@ -2,6 +2,7 @@
   <v-app dark>
     <h1 v-if="error.statusCode === 404">
       {{ pageNotFound }}
+        {{ message }}
     </h1>
     <h1 v-else>
       {{ otherError }}
@@ -33,7 +34,15 @@ export default {
     return {
       title
     }
-  }
+  },
+    computed: {
+      statusCode() {
+          return (this.error && this.error.statusCode || 500)
+      },
+        message() {
+          return this.error.message
+        }
+    }
 }
 </script>
 

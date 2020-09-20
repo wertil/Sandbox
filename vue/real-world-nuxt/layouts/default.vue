@@ -67,6 +67,17 @@
 import NavBar from "~/components/NavBar";
 export default {
     components: {NavBar},
+    // method for vue-meta
+    head() {
+        return {
+            titleTemplate: '%s - Real World Events',
+            meta: [
+                {hid: 'description'},
+                {name: 'description'},
+                {content: 'Cool Events in da neighborhood'}
+            ]
+        }
+    },
     data() {
         return {
             clipped: false,
