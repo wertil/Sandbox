@@ -1,0 +1,7 @@
+json-server --watch db.json
+
+json-server --watch --port 3333 db.json
+
+npm install @nuxtjs/axios
+
+https://github.com/Code-Pop/real-world-nuxt
