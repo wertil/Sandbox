@@ -11,6 +11,7 @@
 import EventCard from "~/components/EventCard";
 
 export default {
+    name: "Events",
     components: {EventCard},
     // method for vue-meta
     head() {
@@ -18,18 +19,19 @@ export default {
             title: 'Event Listing '
         }
     },
-    // $axios destructured out of the context object
-    asyncData({$axios, error}) {
-        return $axios.get('http://localhost:3333/events').then(response => {
+    // "data" destructured out of the response object
+    async asyncData({$axios, error}) {
+        try {
+            const {data} = await $axios.get('http://localhost:3333/events')
             return {
-                events: response.data
+                events: data
             }
-        }).catch(e => {
+        } catch(e) {
             error({
                 statusCode: 503,
                 message: 'Unable to fetch events. Please try again later.'
             })
-        })
+        }
     }
 
 }

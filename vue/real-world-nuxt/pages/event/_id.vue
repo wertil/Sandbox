@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Event #{{ id }}</h1>
+        <h1>Event {{ event.title }}</h1>
     </div>
 </template>
 
@@ -8,22 +8,32 @@
 
 
 export default {
+    name: "Event",
     // method for vue-meta
     head() {
         return {
-            title: 'Event #' + this.id,
+            title: 'Event #' + this.event.title,
             meta: [
                 {hid: 'description'},
                 {name: 'description'},
-                {content: 'What you need to know about Event #' + this.id}
+                {content: 'What you need to know about Event #' + this.event.title}
             ]
         }
     },
-    computed: {
-        id() {
-            return this.$route.params.id
+    async asyncData({$axios, error, params}) {
+        try {
+            const {data} = await $axios.get('http://localhost:3333/events/'+ params.id)
+            return {
+                event: data
+            }
+        } catch(e) {
+            error({
+                statusCode: 503,
+                message: 'Unable to fetch event #' + params.id
+            })
         }
     }
+
 }
 </script>
 

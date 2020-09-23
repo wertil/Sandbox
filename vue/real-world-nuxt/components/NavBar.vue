@@ -34,10 +34,6 @@
     justify-content: space-between;
     align-items: center;
     height: 60px;
-
-    a {
-        color: #fff;
-    }
 }
 .nav .nav-item {
     box-sizing: border-box;
