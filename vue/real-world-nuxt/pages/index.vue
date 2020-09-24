@@ -9,6 +9,8 @@
 
 
 import EventCard from "~/components/EventCard";
+import { mapState } from 'vuex'
+
 
 export default {
     name: "Events",
@@ -20,19 +22,19 @@ export default {
         }
     },
     // "data" destructured out of the response object
-    async asyncData({$axios, error}) {
+    async fetch({store, error}) {
         try {
-            const {data} = await $axios.get('http://localhost:3333/events')
-            return {
-                events: data
-            }
+            await store.dispatch('events/fetchEvents')
         } catch(e) {
             error({
                 statusCode: 503,
                 message: 'Unable to fetch events. Please try again later.'
             })
         }
-    }
+    },
+    computed: mapState({
+        events: state =>  state.events.events
+    })
 
 }
 </script>
