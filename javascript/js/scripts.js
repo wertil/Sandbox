@@ -10,6 +10,5 @@
 // import { sumMultiples } from './modules/binary-search.js'
 // console.log(sumMultiples())
 
-import { threeSum } from './interview-expresso/strings-arrays/three-sum.js'
-console.log(threeSum())
+
 
