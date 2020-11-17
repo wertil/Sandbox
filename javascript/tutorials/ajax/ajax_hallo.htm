@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        function anfordern() {
+            var req = new XMLHttpRequest();
+            req.open("get", "ajax_hallo.php", true);
+            // req.open("get", "ajax_hallo.txt", true);
+            req.onreadystatechange = auswerten;
+            req.send();
+        }
+
+        function auswerten(e) {
+            console.log(e);
+            if (e.target.readyState == 4 && e.target.status == 200)
+                document.getElementById("idAbsatz").firstChild.nodeValue =
+                    e.target.responseText;
+        }
+
+        function getWithFetch() {
+            fetch('ajax_hallo.php').then(function (response) {
+                // The API call was successful!
+                console.log('success!', response);
+                if (response.status >= 200 && response.status < 300) {
+                    response.text().then(e => {
+                        // document.getElementById("IdAbsatz").textContent = e;
+                        document.getElementById("idAbsatz").firstChild.nodeValue = e;
+                    });
+
+
+                }
+            }).catch(function (err) {
+                // There was an error
+                console.warn('Something went wrong.', err);
+            });
+        }
+    </script>
+</head>
+<body>
+<p><a href="javascript:getWithFetch()">Bitte klicken</a></p>
+<p id="idAbsatz">&nbsp;</p>
+</body>
+</html>

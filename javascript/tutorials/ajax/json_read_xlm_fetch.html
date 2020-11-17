@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+
+        async function getData() {
+            let url = 'json_single.json';
+            try {
+                let res = await fetch(url);
+                return await res.json();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        async function renderData(node) {
+            let data = await getData();
+            const output = document.getElementById("idAusgabe");
+            output.innerText = `Farbe: ${data[node].farbe}, Geschwindkeit: ${data[node].geschwindigkeit} km/h `;
+        }
+
+
+    </script>
+</head>
+<body>
+<p>Fahrzeugdaten:<br>
+    <a href="javascript:renderData(0);">Dacia</a><br>
+    <a href="javascript:renderData(1);">Nissan</a><br>
+    <a href="javascript:renderData(2);">Renault</a></p>
+<p id="idAusgabe">&nbsp;</p>
+</body>
+</html>
