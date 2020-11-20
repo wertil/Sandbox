@@ -1,0 +1,17 @@
+{
+  "name": "odin-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwind build src/styles.css -o dist/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.0.2",
+    "postcss": "^8.1.8",
+    "tailwindcss": "^2.0.1"
+  }
+}

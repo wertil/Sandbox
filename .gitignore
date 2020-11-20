@@ -15,3 +15,5 @@ Gatsby/starter-files/sanity/sample-data/
 Gatsby/stepped-solutions/
 *.xml
 *.map
+javascript/tutorials/odin-project/node_modules/
+javascript/tutorials/odin-project/.sass-cache/
