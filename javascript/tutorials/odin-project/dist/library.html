@@ -11,11 +11,9 @@
 </head>
 <body class="bg-gray-100">
 
-<div class="container">
-    <div class="book-grid">
-    </div>
+<div class="container p-10">
 
-    <div class="add-box-container bg-yellow-200 rounded p-3 mt-2">
+    <div class="add-box-container bg-yellow-200 rounded p-3 my-5 hidden">
 
         <form name="addBook">
             <input type="text" name="author" placeholder="Author">
@@ -25,6 +23,18 @@
             <label for="read">Already ready?</label>
             <button class="button" id="add-book">Add Book</button>
         </form>
+    </div>
+
+
+    <div class="book-grid sm:grid grid-flow-row grid-cols-3 grid-rows-none gap-8">
+        <div class="book plus-button cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+        </div>
+        <div class="book-grid-container contents"></div>
     </div>
 
 
