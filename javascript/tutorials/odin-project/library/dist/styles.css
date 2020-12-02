@@ -31251,6 +31251,13 @@ video {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+.x--read .read-icon {
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -183990,4 +183997,5 @@ video {
             animation: bounce 1s infinite;
   }
 }
+
 

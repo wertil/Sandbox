@@ -1,0 +1,60 @@
+@import "../css/base";
+
+$player1: #ee1212;
+$player2: #0b4ec3;
+
+
+.play-grid {
+    display: grid;
+    width: clamp(10rem, 50vw, 80vw);
+    height: clamp(10rem, 50vw, 80vh);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3px;
+    background: $bg;
+    margin-bottom: 2rem;
+
+    > div {
+        position: relative;
+        background: #fff;
+        color: $bg;
+        text-shadow: #dad6d6 0.1rem 0.1rem 0.1rem;
+    }
+
+    .mark-x {
+        &:before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: grid;
+            place-items: center;
+            content: "x";
+            font-size: 5rem;
+        }
+    }
+
+    .mark-o {
+        &:before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: grid;
+            place-items: center;
+            content: "o";
+            font-size: 5rem;
+        }
+    }
+
+    .player-1 {
+        color: $player1;
+    }
+
+    .player-2 {
+        color: $player2;
+    }
+
+
+}

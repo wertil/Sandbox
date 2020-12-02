@@ -1,14 +1,24 @@
 let myLibrary = [];
 const formAddBook = document.addBook;
+const formEditBook = document.editBook;
+const editAuthor = formEditBook.author;
+const editTitle = formEditBook.title;
+const editPages = formEditBook.pages;
+const editRead = formEditBook.read;
+const editNo = formEditBook.no;
 const addBookButton = document.querySelector("#add-book");
+const editBookButton = document.querySelector("#edit-book");
 const bookGridContainer = document.querySelector(".book-grid-container");
 const plusButton = document.querySelector('.plus-button');
 const addBoxContainer = document.querySelector('.add-box-container');
+const editBoxContainer = document.querySelector('.edit-box-container');
 addBookButton.addEventListener('click', getNewBook);
+editBookButton.addEventListener('click', updateBook);
 formAddBook.addEventListener("submit", e => e.preventDefault());
+formEditBook.addEventListener("submit", e => e.preventDefault());
 let deleteBooks;
-let editBook;
-let readBook;
+let editBooks;
+let readBooks;
 
 class Book {
     constructor(author, title, pages, read = false, currentlyReading = false) {
@@ -33,7 +43,7 @@ function displayBooks(type) {
     let bookGridHtml = myLibrary.map(book => {
         count++;
         return `
-        <div class="book relative" data-count=${count}>   
+        <div class="book relative ${book.read ? 'x--read' : ''}" data-count=${count}>   
             <div><span class="font-normal block sm:inline">${book.author}</span> "${book.title}"</div>
             <div class="font-normal text-sm">${book.pages} Pages ${book.read ? `, already read` : ``}${book.currentlyReading ? `, currently reading` : ``}</div>
             <div class="delete-icon icon-button -top-2 -left-2 ">
@@ -59,8 +69,8 @@ function displayBooks(type) {
     bookGridContainer.innerHTML = bookGridHtml;
     // initialize Icons and Eventhandlers again after DOM update:
     deleteBooks = document.querySelectorAll('.delete-icon');
-    editBook = document.querySelector('.edit-icon');
-    readBook = document.querySelector('.read-icon');
+    editBooks = document.querySelectorAll('.edit-icon');
+    readBooks = document.querySelectorAll('.read-icon');
     if(type==="update") iconHandlers();
 }
 
@@ -81,9 +91,31 @@ function getNewBook() {
     displayBooks("update");
 }
 
+function updateBook() {
+    const author = editAuthor.value;
+    const title = editTitle.value;
+    const pages = editPages.value;
+    const read = editRead.checked;
+    console.log("huhu",myLibrary[editNo.value]);
+    myLibrary[editNo.value] = {
+        author: author,
+        currentlyReading: false,
+        pages: pages,
+        read: read,
+        title: title
+    }
+    toggleEditForm();
+    localStorage.setItem('books', JSON.stringify(myLibrary));
+    displayBooks("update");
+}
+
 // Open Form
 function toggleForm() {
     addBoxContainer.classList.toggle("hidden");
+}
+
+function toggleEditForm() {
+    editBoxContainer.classList.toggle("hidden");
 }
 
 // open Form
@@ -92,13 +124,31 @@ plusButton.addEventListener('click', toggleForm)
 function iconHandlers() {
     // delete Book
     deleteBooks.forEach(icon => {
-        console.log("huhu");
         icon.addEventListener('click', e => {
-            console.log(myLibrary);
             const bookNo = e.target.parentNode.dataset.count;
             myLibrary.splice(bookNo, 1);
             localStorage.setItem('books', JSON.stringify(myLibrary));
             displayBooks("update");
+        })
+    })
+    readBooks.forEach(icon => {
+        icon.addEventListener('click', e => {
+            const bookNo = e.target.parentNode.dataset.count;
+            myLibrary[bookNo].read = !myLibrary[bookNo].read;
+            localStorage.setItem('books', JSON.stringify(myLibrary));
+            displayBooks("update");
+        })
+    })
+    editBooks.forEach(icon => {
+        icon.addEventListener('click', e => {
+            const bookNo = e.target.parentNode.dataset.count;
+            toggleEditForm();
+            console.log(myLibrary[bookNo].author);
+            editAuthor.value = myLibrary[bookNo].author;
+            editTitle.value = myLibrary[bookNo].title;
+            editPages.value = myLibrary[bookNo].pages;
+            editNo.value = bookNo;
+            myLibrary[bookNo].read ? editRead.setAttribute("checked", "") : editRead.removeAttribute("checked", "");
         })
     })
 }

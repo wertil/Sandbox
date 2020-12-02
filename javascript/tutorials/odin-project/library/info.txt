@@ -1,0 +1,4 @@
+https://github.com/LinkedInLearning/videochat-vue-firebase-2841310
+
+install vue cli
+vue create *name of project*
