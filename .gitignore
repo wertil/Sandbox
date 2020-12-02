@@ -17,3 +17,4 @@ Gatsby/stepped-solutions/
 *.map
 javascript/tutorials/odin-project/node_modules/
 javascript/tutorials/odin-project/.sass-cache/
+/javascript/tutorials/odin-project/library-vue/src/db.js
