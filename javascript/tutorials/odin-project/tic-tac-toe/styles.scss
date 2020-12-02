@@ -30,7 +30,8 @@ $player2: #0b4ec3;
             display: grid;
             place-items: center;
             content: "x";
-            font-size: 5rem;
+            font-size: 4rem;
+            line-height: 1;
         }
     }
 
@@ -44,7 +45,8 @@ $player2: #0b4ec3;
             display: grid;
             place-items: center;
             content: "o";
-            font-size: 5rem;
+            font-size: 4rem;
+            line-height: 1;
         }
     }
 
@@ -56,5 +58,25 @@ $player2: #0b4ec3;
         color: $player2;
     }
 
+    .winner {
+        background: #d9ffc6;
+        color: #52ab54;
+    }
 
+}
+
+
+
+.settings {
+    display: flex;
+    width: clamp(10rem, 50vw, 80vw);
+
+    .row-input {
+        width: 2rem;
+        margin-right: 1rem;
+    }
+
+    .reset {
+        margin-left: auto;
+    }
 }
