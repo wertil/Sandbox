@@ -17,6 +17,7 @@
                         <router-link class="btn btn-outline-primary mr-2" to="/register">Register</router-link>
                     </div>
                     <div v-else>
+                        <router-link class="btn btn-outline-primary mr-2" to="/rooms">Rooms</router-link>
                         <button class="btn btn-outline-primary mr-2" @click="$emit('logout')" v-if="user">Logout</button>
                     </div>
 

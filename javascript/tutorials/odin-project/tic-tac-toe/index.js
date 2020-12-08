@@ -139,7 +139,7 @@ const game = (() => {
                 // switch active Player:
                 activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
                 updateBoard();
-            })
+            }, {once: true})
         })
     }
 

@@ -2,7 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Library from "../views/Library.vue";
+import Api from "../views/Api.vue";
 import Register from "../views/Register.vue";
+import Rooms from "../views/Rooms.vue";
 
 Vue.use(VueRouter);
 
@@ -11,6 +13,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/api",
+    name: "api",
+    component: Api
   },
   {
     path: "/library",
@@ -30,6 +37,11 @@ const routes = [
     path: "/register",
     name: "register",
     component: Register
+  },
+  {
+    path: "/rooms",
+    name: "rooms",
+    component: Rooms
   },
 ];
 
