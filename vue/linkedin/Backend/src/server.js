@@ -84,7 +84,7 @@ const products = [
     averageRating: "5.0"
   },
   {
-    id: "901",
+    id: "233",
     name: "Teal Dress Shoes",
     price: "330.00",
     description:
@@ -93,7 +93,7 @@ const products = [
     averageRating: "5.0"
   },
   {
-    id: "789",
+    id: "535",
     name: "Fancy Boots",
     price: "230.00",
     description:
@@ -102,7 +102,7 @@ const products = [
     averageRating: "5.0"
   },
   {
-    id: "890",
+    id: "333",
     name: "Gold Shoes",
     price: "180.00",
     description:

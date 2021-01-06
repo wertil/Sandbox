@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <p> {{time}} {{ message }}</p>
+    <button v-if="!timeInterval" @click="startCounter">start counter</button>
+    <button v-else @click="stopCounter">stop counter</button>
+        <ul>
+            <li v-for="(value,key,index) in user">{{ key }} : {{ value }}</li>
+        </ul>
+        <p>is it true? {{ isTrue ? 'Yes' : 'No' }}</p>
+        <p v-if="isTrue">{{ array[2] }}</p>
+        <p>{{ object.car }}</p>
+        <p>{{ func() }}</p>
+        <button @click="changeMessage('You click the button', $event)">click me</button>
+        <p>{{ welcome() }}</p>
+        <span v-for="(number, index) in array">{{index}}: {{number}} | </span>
+        <p @mousemove="getCoords"><img :src="img" alt=""></p>
+        <p>x: {{x}} y: {{y}}</p>
+</div>
+
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            time: 0,
+            timeInterval: null,
+            message: "Hi there!",
+            isTrue: true,
+            user: {
+                name: "Francis",
+                lastName: "Jones",
+                age: 25
+            },
+            array: ['John', 'Jenny', 'James'],
+            object: {
+                car: "Subaru"
+            },
+            func: () => "I'm from a function",
+            img: "http://placekitten.com/g/200/300",
+            x: 0,
+            y: 0
+        },
+        methods: {
+            welcome() {
+                return "hello from method " + this.message
+            },
+            startCounter() {
+                this.timeInterval = setInterval(() => {
+                    this.time++;
+                }, 1000)
+            },
+            stopCounter() {
+                clearInterval(this.timeInterval);
+                this.timeInterval = null;
+            },
+            getCoords(event) {
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            changeMessage(msg, event) {
+                this.message = msg;
+                console.log(event);
+
+            }
+
+        },
+        mounted() {
+
+        }
+    });
+
+
+</script>
+</body>
+</html>
