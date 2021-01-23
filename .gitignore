@@ -21,3 +21,6 @@ javascript/tutorials/odin-project/.sass-cache/
 /vue/linkedin/Frontend/src/assets
 /javascript/tutorials/odin-project/library-vue/src/keys.js
 /vue/linkedin/Backend/assets
+vue/linkedin/Backend/node_modules/
+.idea/
+vue/linkedin/Frontend/Ex_Files_VueJS_FullStack.zip
