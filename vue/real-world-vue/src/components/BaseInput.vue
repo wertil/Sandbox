@@ -16,6 +16,7 @@ export default {
     label: String
   },
   computed: {
+      // to resolve conflict with input listeners
     listeners() {
       return {
         ...this.$listeners,

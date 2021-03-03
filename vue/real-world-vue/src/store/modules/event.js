@@ -25,6 +25,7 @@ export const mutations = {
 }
 
 export const actions = {
+  // first parameter is the destructured context object
   createEvent({ commit, dispatch, rootState }, event) {
     // accessing property from another module via "rootState":
     console.log('User creating Event is ' + rootState.user.user.name)
