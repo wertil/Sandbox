@@ -2,13 +2,12 @@
   <div class="board">
     <div class="flex flex-row items-start">
       <BoardColumn
-        v-for="(column, $columnIndex) of board.columns"
-        :key="$columnIndex"
+        v-for="(column, index) of board.columns"
+        :key="index"
         :column="column"
-        :columnIndex="$columnIndex"
+        :columnIndex="index"
         :board="board"
       />
-
       <div class="column flex">
         <input
           type="text"

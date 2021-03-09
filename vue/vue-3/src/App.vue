@@ -1,13 +1,19 @@
 <template>
-  <CompositionAPI />
+    <CompositionAPI />
+    <CompositionAPI_Import />
+    <CompositionAPI_Reactive />
 </template>
 
 <script>
 import CompositionAPI from "@/components/CompositionAPI";
+import CompositionAPI_Reactive from "@/components/CompositionAPI_Reactive";
+import CompositionAPI_Import from "@/components/CompositionAPI_Import";
 
 export default {
   name: 'App',
   components: {
+      CompositionAPI_Import,
+      CompositionAPI_Reactive,
       CompositionAPI
   }
 }
