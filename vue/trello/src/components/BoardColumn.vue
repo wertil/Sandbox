@@ -14,10 +14,10 @@
       </div>
       <div class="list-reset">
         <ColumnTask
-          v-for="(task, $taskIndex) of column.tasks"
-          :key="$taskIndex"
+          v-for="(task, index) of column.tasks"
+          :key="index"
           :task="task"
-          :taskIndex="$taskIndex"
+          :taskIndex="index"
           :column="column"
           :columnIndex="columnIndex"
           :board="board"
