@@ -15,24 +15,27 @@
     </tr>
     </tbody>
   </table>
-  <MailView v-if="openedEmail" :email="openedEmail"></MailView>
+  <ModalView v-if="openedEmail" @close="openedEmail=null">
+    <MailView :email="openedEmail"/>
+  </ModalView>
 </template>
 
 <script>
 import {format} from "date-fns";
-import { ref } from "vue";
+import {ref} from "vue";
 import axios from "axios";
 import MailView from "./MailView";
+import ModalView from "./ModalView";
 
 export default {
   name: "MailTable",
-  components: {MailView},
+  components: {ModalView, MailView},
   async setup() {
 
     let response = await axios.get("http://localhost:3000/emails");
     const emails = ref(response.data);
     const openedEmail = ref(null);
-    return {  format, emails, openedEmail }
+    return {format, emails, openedEmail}
   },
   computed: {
     sortedEmails() {
