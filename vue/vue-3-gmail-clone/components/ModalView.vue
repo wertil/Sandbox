@@ -1,6 +1,6 @@
 <template>
   <div class="modal">
-    <div class="overlay" @click="$emit('close')"></div>
+    <div class="overlay" @click="$emit('closeModal')"></div>
     <div class="modal-card">
       <slot></slot>
     </div>
@@ -9,21 +9,16 @@
 </template>
 
 <script>
-import {onBeforeUnmount} from "vue";
+import useKeyDown from "../composables/use-keydown";
 
 export default {
   name: "ModalView",
-  emits: ['close'],
+  emits: ['closeModal'],
   setup(props, {emit}) {
-    let onKeydown = event => {
-      if(event.key === 'Escape') {
-        emit('close')
-      }
-    }
-    window.addEventListener('keydown', onKeydown)
-    onBeforeUnmount(() => {
-      window.removeEventListener('keydown', onKeydown)
-    })
+    // array of functions with the key that is supposed to trigger it in useKeyDown function
+    useKeyDown([
+      { key: 'Escape',fn: () => { emit('closeModal')}}
+    ]);
     return {emit}
   }
 }
