@@ -1,4 +1,4 @@
-node_modules
+npmnode_modules
 *.log
 .nuxt
 nuxt.d.ts
