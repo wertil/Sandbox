@@ -11,6 +11,8 @@
     "sass": "^1.48.0"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.1.8",
+    "pinia": "^2.0.9",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0"
   }

@@ -1,7 +1,9 @@
 <template>
     <div class="container">
         <div>
-            <img alt="Vue logo" src="./assets/primevue-logo.png">
+
+          {{store.name}} {{ store.counter}}
+          <Button type="submit" label="Add" @click="store.hit()"/>
             <Toast />
 
             <div >
@@ -16,13 +18,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useStore } from '~/store/mainStore'
 import { useToast } from "primevue/usetoast";
+import Button from "primevue/button";
 
+components: { Button }
+
+const store = useStore();
 const text = ref();
 const toast = useToast();
 const greet = () => {
     toast.add({severity: 'info', summary: 'Hello '  + text.value});
 }
+
+
 </script>
 
 <style lang="scss">
