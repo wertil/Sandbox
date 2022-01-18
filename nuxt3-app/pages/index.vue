@@ -37,7 +37,6 @@ const greet = () => {
 <style lang="scss">
 .container {
     margin: 0 auto;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;

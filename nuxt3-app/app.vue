@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <NuxtPage />
-  </div>
+    <div>
+        <NuxtPage/>
+        <Settings/>
+    </div>
 </template>
+
+<script setup lang="ts">
+
+</script>
 
