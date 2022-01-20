@@ -6,11 +6,11 @@
   Canvas, CanvasText unfortunately only works reliably on chrome atm
   more info: https://www.stefanjudis.com/today-i-learned/css-defines-color-values-that-follow-system-preferences/
    */
-  --system-color-bg: Canvas;
-  --system-color-text: CanvasText;
+  --bg-color: Canvas;
+  --text-color: CanvasText;
   color-scheme: light dark;
-  background-color: var(--system-color-bg);
-  color: var(--system-color-text);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 
 }
 
