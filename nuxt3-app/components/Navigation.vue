@@ -1,21 +1,19 @@
 <template>
-    <NavBar
+    <ControlsNavBar
         :tab-items="navBarItems"
     >
-        <NavBarItem
+        <ControlsNavBarItem
             v-for="item in navBarItems"
             :key="item.id"
             :class="{ active : item.isActive }"
             @click="setActiveNavTabBarItem(item.id)"
         >
             <NuxtLink :to="item.page">{{ item.name }}</NuxtLink>
-        </NavBarItem>
-    </NavBar>
+        </ControlsNavBarItem>
+    </ControlsNavBar>
 </template>
 
 <script lang="ts" setup>
-import NavBar from '~/components/controls/NavBar.vue';
-import NavBarItem from '~/components/controls/NavBarItem.vue';
 
 interface NavBarItem {
     id: number,
@@ -25,7 +23,7 @@ interface NavBarItem {
     color?: string,
 }
 
-const navBarItems = ref<NavBarItem>([
+const navBarItems = ref<NavBarItem[]>([
     {
         id: 1,
         name: 'Home',
