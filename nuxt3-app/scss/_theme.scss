@@ -1,21 +1,37 @@
-:root {
-  --font-size: 14px;
-  --font-family:  Arial, sans-serif;
-
-  /*
-  Canvas, CanvasText unfortunately only works reliably on chrome atm
-  more info: https://www.stefanjudis.com/today-i-learned/css-defines-color-values-that-follow-system-preferences/
-   */
+@mixin light-theme {
   --bg-color: Canvas;
   --text-color: CanvasText;
-  color-scheme: light dark;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+}
 
+@mixin dark-theme {
+  --bg-color: CanvasText;
+  --text-color: Canvas;
+}
+
+:root {
+  --font-size: 14px;
+  --font-family: Arial, sans-serif;
+  @include light-theme;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    @include dark-theme;
+  }
+}
 
+
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+
+
+  &.light-theme {
+    @include light-theme;
+  }
+  
+  &.dark-theme {
+    @include dark-theme;
   }
 }

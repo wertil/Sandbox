@@ -7,6 +7,13 @@
 </template>
 
 <script setup lang="ts">
+import { onBeforeMount } from 'vue';
+
+
+
+onBeforeMount(() => {
+ 
+});
 
 </script>
 

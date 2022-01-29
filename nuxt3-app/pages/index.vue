@@ -22,8 +22,6 @@ import { useStore } from '~/store/mainStore'
 import { useToast } from "primevue/usetoast";
 import Button from "primevue/button";
 
-components: { Button }
-
 const store = useStore();
 const text = ref();
 const toast = useToast();
