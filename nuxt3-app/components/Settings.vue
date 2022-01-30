@@ -2,14 +2,17 @@
     <div class="settings" :class="{ open: isSettingsOpen }">
         <Button icon="pi pi-cog" class="p-button-icon" @click="isSettingsOpen = !isSettingsOpen" />
         <div class="panel">
-            <div class="mode">
-                <span>Dark Mode: </span>
-                <ToggleButton v-model="isDarkMode" onIcon="pi pi-check" offIcon="pi pi-times" />
-            </div>
+
             <div class="mode">
                 <span>Follow System Theme: </span>
                 <Checkbox id="system" name="system" v-model="isFollowSystemTheme" :binary="true"  />
             </div>
+
+            <div :class="['mode', {inactive: isFollowSystemTheme}]">
+                <span>Dark Mode: </span>
+                <ToggleButton  v-model="isDarkMode" onIcon="pi pi-check" offIcon="pi pi-times" />
+            </div>
+
         </div>
     </div>
 </template>
@@ -19,6 +22,7 @@ import Button from "primevue/button";
 import Checkbox from 'primevue/checkbox';
 import ToggleButton from "primevue/togglebutton";
 import { onMounted } from 'vue';
+import {CssClasses} from "~/models/cssClasses";
 
 const isSettingsOpen = ref(false);
 
@@ -32,9 +36,6 @@ function getMediaPreference() {
   ).matches;
   if (hasDarkPreference) {
     isDarkMode.value = true;
-    return "dark-theme";
-  } else {
-    return "light-theme";
   }
 }
 
@@ -42,16 +43,25 @@ onMounted(() => {
  getMediaPreference();
 });
 
-watch(isDarkMode, () => {
-  if(isDarkMode.value) {
-     document.body.classList.add("dark-theme");
-     document.body.classList.remove("light-theme");
-     isFollowSystemTheme.value = false;
-  } else {
-      document.body.classList.add("light-theme");
-      document.body.classList.remove("dark-theme");
-      isFollowSystemTheme.value = false;
-  }
+watch([isDarkMode, isFollowSystemTheme], ([isDarkMode, isFollowSystemTheme], oldValue) => {
+    console.log("isDarkMode, isFollowSystemTheme out", isDarkMode, isFollowSystemTheme)
+    if(isFollowSystemTheme) {
+        document.body.classList.remove(CssClasses.lightTheme);
+        document.body.classList.remove(CssClasses.darkTheme);
+        return;
+    }
+
+    if(isDarkMode) {
+       document.body.classList.add(CssClasses.darkTheme);
+       document.body.classList.remove(CssClasses.lightTheme);
+       isFollowSystemTheme = false;
+    } else {
+        document.body.classList.add(CssClasses.lightTheme);
+        document.body.classList.remove(CssClasses.darkTheme);
+        isFollowSystemTheme = true;
+    }
+
+
 }, { immediate: false})
 
 </script>
@@ -83,6 +93,11 @@ $settingsWidth: 200px;
     .mode {
         display: flex;
         align-items: center;
+
+        &.inactive {
+            opacity: 0.5;
+            pointer-events: none;
+        }
 
         span {
             padding-right: .5rem;
