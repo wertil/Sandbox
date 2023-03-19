@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const isLoggedIn = useIsLoggedIn();
+const user = useUser();
 </script>
 
 <template>
@@ -7,8 +7,8 @@ const isLoggedIn = useIsLoggedIn();
     <nuxt-link to="/">Home</nuxt-link>
     <nuxt-link to="/movies">Movies</nuxt-link>
     <nuxt-link to="/admin">Admin</nuxt-link>
-    <nuxt-link to="/login" v-if="!isLoggedIn">Login</nuxt-link>
-    <a href="#" v-else @click.prevent="isLoggedIn = false">Logout</a>
+    <nuxt-link to="/login" v-if="!user.isLoggedIn">Login</nuxt-link>
+    <a href="#" v-else @click.prevent="user.isLoggedIn = false">Logout</a>
   </nav>
  <slot />
 </template>
