@@ -1,10 +1,16 @@
+<script setup>
+const pageTitle = 'My movie site';
+useHead({
+  titleTemplate: (titleChunk) => titleChunk ? `${titleChunk} - ${pageTitle}` : pageTitle,
+})
+</script>
+
 <template>
-  <div>
-    <nav>
-      <nuxt-link to="/">Home</nuxt-link>
-      <nuxt-link to="/movies">Movies</nuxt-link>
-    </nav>
-   <nuxt-page />
+  <div class="frame">
+    <nuxt-layout>
+      <nuxt-page />
+    </nuxt-layout>
+
   </div>
 </template>
 
@@ -16,9 +22,12 @@ body {
   padding: 1rem;
 }
 
+.frame {
+  width: 100%;
+}
+
 a {
   color: cornflowerblue;
   padding-right: 0.5rem;
 }
-
 </style>

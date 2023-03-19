@@ -29,6 +29,9 @@ if(data.value?.Error === 'Incorrect IMDb ID.') {
   showError({statusCode: 404, statusMessage: 'Page not found'})
 }
 
+useHead({
+  title: data.value?.Title,
+})
 </script>
 
 <template>

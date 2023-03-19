@@ -42,10 +42,15 @@ search();
 <style scoped>
 ul {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, minmax(10vw,20vw));
   gap: 1rem;
 }
+
 li {  
   list-style: none;
+}
+
+img {
+  width: 100%;
 }
 </style>
