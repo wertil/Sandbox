@@ -1,12 +1,14 @@
-
-
 import './App.css'
+import TestComponent from "./components/TestComponent.tsx";
+import NavBar from "./components/NavBar.tsx";
+
 
 function App() {
   return (
-    <>
-        <h2>testo</h2>
-    </>
+      <div className={ "wrapper" }>
+          <NavBar/>
+          <TestComponent />
+      </div>
   )
 }
 
